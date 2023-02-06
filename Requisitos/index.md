@@ -29,4 +29,4 @@ Legal! Com isso já temos nosso modelo pronto para ser utilizado.
 
 ![model ready](../../assets/images/model_ready.gif)
 
-[Próximo passo - Phasing Extension]({{ site.baseurl }}/building/phasingextension/){: .btn}
+[Próximo passo - Clonando o app base]({{ site.baseurl }}/cloning/home/){: .btn}
