@@ -8,34 +8,27 @@ permalink: /
 nav_order: 1
 ---
 
-# Construction Phasing Tutorial
+# Tutorial 
 
 ## Introdução
 
-Neste tutorial, vamos nos concentrar na construção de uma extensão para faseamento de construção dentro do Viewer.
+Neste tutorial, vamos nos concentrar na conexão entre dados de sensores com o modelo usando a extensão Data Visualization do Viewer.
+Ao final do tutorial, teremos nosso app semelhante ao exemplo abaixo:
 
 ![Final Result](/assets/images/complete.gif)
 
-Basicamente vamos renderizar um modelo (gerenciado pelo seu aplicativo Forge, Autodesk Docs ou outro repositório em núvem da Autodesk. Detalhes [aqui](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) no navegador com o Viewer, adicionando um [gráfico de Gantt](https://en.wikipedia.org/wiki/Gantt_chart) conectado com o modelo, de modo que tenhamos os elementos vinculados a diversas atividades construtivas.
+Basicamente vamos renderizar um modelo (gerenciado pelo seu aplicativo APS, Autodesk Docs ou outro repositório em núvem da Autodesk. Detalhes [aqui](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) no navegador com o Viewer, adicionando [sprites](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/sprites/) que representarão sensores integrados com a nossa cena do modelo, de modo que tenhamos os [mapas de calor](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/heatmap/) representando os dados desses sensores de acordo com o gradiente de cores definido.
 
-Legal! Para atingir esse objetivo precisaremos de alguns pré-requisitos:
+Para montar essa solução iremos passar por algumas etapas cruciais como definição do modelo base, dados dos sensores, exemplo base e custmização.
+É recomendável experiência com desenvolvimento WEB para tirar maior proveito desse tutorial.
+Nesse tutorial iremos utilizar o [Visual Studio Code](https://code.visualstudio.com/) como ambiente de desenvolvimento. O exemplo foi desenvolvido usando [Node js](https://nodejs.org/en/). Para simplificar algumas etapas, vamos usar a [extensão do VS Code para APS(anteriormente Forge)](https://marketplace.visualstudio.com/items?itemName=petrbroz.vscode-forge-tools).
 
-1. Primeiramente, se você está dando seus primeiros passos com Forge, vá até o nosso tutorial [Getting Started](https://forge-tutorials.autodesk.io) and [Environment Setup](https://forge-tutorials.autodesk.io/setup/).
+Temos outro tutorial para quem está dando os primeiros passos com a Autodesk Platform Services [aqui](http://aps.autodesk.com/tutorials). Recomendamos sempre ele como primeiro destino ;)
 
-2. Este tutorial será focado na criação de uma [Extensão do Viewer](https://forge.autodesk.com/en/docs/viewer/v7/developers_guide/viewer_basics/extensions/), tendo como base um aplicativo já definido. Se você não tem um, pode usar o exemplo [Simple Viewer](https://forge-tutorials.autodesk.io/tutorials/simple-viewer/) ou [Hubs Browser](https://forge-tutorials.autodesk.io/tutorials/hubs-browser/) em Node.js ou .NET.
+O tutorial é dividido em 3 macro etapas:
 
-3. Para construir essa extensão, usaremos o exemplo [Basic Extension](https://forge-tutorials.autodesk.io/tutorials/dashboard/basic) do [tutorial de Forge](https://forge-tutorials.autodesk.io), mas não é necessário ir até lá. O arquivo `BaseExtension.js` será disado na próxima etapa desse tutorial.
+2. [Requisitos]({{ site.baseurl }}/requisites/home/)
 
-4. Se ainda não tem um modelo para teste, use um da nossa seção de [exemplos](https://knowledge.autodesk.com/support/revit/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/Revit-GetStarted/files/GUID-7B9C7A69-1083-406D-A01F-53D405C167F3-htm.html) (Um arquivo RVT é fortemente recomendado).
+3. [Clonando o app base]({{ site.baseurl }}/cloning/home/)
 
-Uma com os pré-requisitos garantidos, passe para a próxima etapa do tutorial.
-
-O tutorial é dividido em 4 macro etapas:
-
-1. [Introdução]({{ site.baseurl }}/input/index)
-
-2. [Adicionando o Gráfico de Gantt]({{ site.baseurl }}/building/home/)
-
-3. [Conectando o gráfico com o modelo]({{ site.baseurl }}/connecting/home/)
-
-4. [Otimizando a experiência]({{ site.baseurl }}/improving/home/)
+4. [Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/)

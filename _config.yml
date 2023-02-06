@@ -1,9 +1,9 @@
-title: Construction Phasing Tutorial
+title: Tutorial de Conexão IOT
 remote_theme: just-the-docs/just-the-docs
 email: joao.martins@autodesk.com
 description: >- # this means to ignore newlines until "baseurl:"
   This documentation will guide you on how to build a sample for construction phasing. We'll go through the libraries required and Forge services.
-logo: "/assets/images/forge_logo.png"
+logo: "/assets/images/apslogo.png"
 
 baseurl: "/construction-phasing-tutorial-docs" # the subpath of your site, e.g. /blog
 url: "https://joaomartins-callmejohn.github.io" # the base hostname & protocol for your site, e.g. http://example.com

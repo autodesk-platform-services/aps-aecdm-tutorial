@@ -6,11 +6,12 @@ nav_order: 6
 ---
 
 # Sobre o Tutorial
-Este tutorial se concentra na construção de uma extensão do Viewer focada em Faseamento de Construção. Para conseguir isso, passaremos pelas etapas necessárias, aproveitando as APIs da plataforma Forge e outras bibliotecas.
-Este tutorial não deve ser seu primeiro passo na plataforma Forge, se você é um usuário iniciante, por favor, vá até o Guia de Introdução em[forge-tutorials](https://forge-tutorials.autodesk.io).
+Este tutorial se concentra na integração do modelo com dados de sensores. Para conseguir isso, passaremos pelas etapas necessárias, aproveitando as APIs da Autodesk Platform Services (APS) e um exemplo simplificado.
+Este tutorial não deve ser seu primeiro passo na APS. 
+Se você é um usuário iniciante, por favor, vá até o nosso [tutorial principal](http://aps.autodesk.com/tutorials).
 
-Você também pode encontrar o código-fonte completo desta implementação em [github](https://github.com/JoaoMartins-Forge/construction-phasing-tutorial).
+Você também pode encontrar o código-fonte completo do principal exemplo utilizado aqui no [github](https://github.com/autodesk-platform-services/aps-iot-extensions-demo).
 
-Também temos uma demonstração em tempo real disponível [aqui](https://joaomartins-forge.github.io/construction-phasing-tutorial/wwwroot/index.html)
+Também temos uma demonstração em tempo real disponível [aqui](https://aps-iot-extensions-demo.autodesk.io/)
 
-Caso tenha sugestões ou dúvidas, entre em contato conosco através do [suporte](mailto:forge.help@autodesk.com)
+Caso tenha sugestões ou dúvidas, entre em contato conosco através do [suporte](mailto:aps.help@autodesk.com)
