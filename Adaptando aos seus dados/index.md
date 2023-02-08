@@ -10,6 +10,8 @@ permalink: /adapting/home/
 
 Agora vamos ajustar o exemplo aos nossos dados.
 
+## Configurando model urn e view guid
+
 Primeiro vamos adicionar nosso modelo, vista e data de início e fim.
 
 Basta modificarmos o arquivo [public/config.js](https://github.com/autodesk-platform-services/aps-iot-extensions-demo/blob/master/public/config.js)
@@ -28,7 +30,9 @@ Uma vez definidas essas variáveis podemos iniciar o exemplo com o comando `yarn
 
 ![custom model](../../assets/images/custom_model.gif)
 
-Porém, como é possivel ver, os sensores estão localizados em posições aleatórias, sem fazer sentido no contexto do nosso modelo.
+## Ajustando os sensores
+
+Como foi possivel ver, os sensores estão localizados em posições aleatórias, sem fazer sentido no contexto do nosso modelo.
 
 O nosso primeiro passo é determinar a posição dos sensores e os ambientes nos quais os mesmos estão localizados.
 
@@ -66,6 +70,41 @@ Para obter a posição central de um elemento podemos seguir as etapas
   - digitar `NOP_VIEWER.getSelection()` para obter seu dbId
   - digitar `getModifiedWorldBoundingBox(dbId).center()` (subctituindo dbid pelo valor encontrado na etapa anterior)
 
-Desse modod obteremos a posição do seu centro na cena
+Desse modo obteremos a posição do seu centro na cena
 
-![custom model](../../assets/images/custom_model.gif)
+![element center](../../assets/images/element_center.gif)
+
+Voltando ao outro caso possível:
+
+2. Os sensores não estão representados no modelo:
+
+- Nesse caso podemos reagir ao clique na tela do usuário para apresentar a posição equivalente no console.
+
+```js
+NOP_VIEWER.container.addEventListener('click', function (ev) {
+  const result = NOP_VIEWER.clientToWorld(ev.clientX, ev.clientY);
+  if (result) {
+    console.log(result.point);
+  }
+});
+```
+
+Basta copiar e colar esse trecho no console e clicar na posição que você deseja colocar o seu sensor
+
+![click position](../../assets/images/click_position.gif)
+
+Para cada sensor, é necessário também definir o dbId do ambiente no qual o mesmo está localizado.
+
+Para isso, basta selecionar o ambiente e digitar `NOP_VIEWER.getSelection()` no console
+
+![room dbid](../../assets/images/room_dbid.gif)
+
+## Adaptando iot.mocked.js
+
+Por fim, devemos ajustar o arquivo `iot.mocked.js` com os valores encontrados anteriormente para as posições dos sensores e dbids dos ambientes
+
+![iot mocked](../../assets/images/iot_mocked.gif)
+
+Com isso teremos nosso modelo pronto com os sensores customizados.
+
+A próxima etapa é adicionar os dados dos sensores em tempo real, porém essa parte não será coberta nesse tutorial.
