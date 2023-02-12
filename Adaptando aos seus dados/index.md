@@ -66,13 +66,20 @@ var getModifiedWorldBoundingBox = function(dbId) {
 
 Para obter a posição central de um elemento podemos seguir as etapas
   - copiar e colar essa função no console
-  - selecionar um elemento  
-  - digitar `NOP_VIEWER.getSelection()` para obter seu dbId
+
+![copy n paste](../../assets/images/copy_paste_function_console.gif)
+
+  - selecionar um elemento  e digitar `NOP_VIEWER.getSelection()` no console para obter seu dbId
+
+![selected element dbid](../../assets/images/selected_element_dbid.gif)
+
   - digitar `getModifiedWorldBoundingBox(dbId).center()` (subctituindo dbid pelo valor encontrado na etapa anterior)
 
-Desse modo obteremos a posição do seu centro na cena
-
 ![element center](../../assets/images/element_center.gif)
+
+Desse modo obteremos a posição do seu centro na cena.
+
+No caso do nosso exemplo seria `x: 102.20546340942383, y: -184.69332885742188, z: -14.37007999420166`
 
 Voltando ao outro caso possível:
 
@@ -107,69 +114,69 @@ No nosso caso, o arquivo ficou da seguite maneira
 
 ```js
 const SENSORS = {
-    'sensor-1': {
-        name: 'Living Room',
-        description: 'Basic sensor in the middle of the living room.',
-        groupName: 'Level 1',
-        location: {
-            x: 31.92,
-            y: 11.49,
-            z: -12.97
-        },
-        objectId: 4124
+  'sensor-1': {
+    name: 'Living Room',
+    description: 'Basic sensor in the middle of the living room.',
+    groupName: 'Level 1',
+    location: {
+      x: 31.92,
+      y: 11.49,
+      z: -12.97
     },
-    'sensor-2': {
-        name: 'Dining Table',
-        description: 'Basic sensor at the dining table.',
-        groupName: 'Level 1',
-        location: {
-            x: -10,
-            y: 41.64,
-            z: -12.15
-        },
-        objectId: 4111
+    objectId: 4124
+  },
+  'sensor-2': {
+    name: 'Dining Table',
+    description: 'Basic sensor at the dining table.',
+    groupName: 'Level 1',
+    location: {
+      x: -10,
+      y: 41.64,
+      z: -12.15
     },
-    'sensor-3': {
-        name: 'Kitchen',
-        description: 'Basic sensor in the kitchen.',
-        groupName: 'Level 1',
-        location: {
-            x: 10,
-            y: 41.64,
-            z: -12.15
-        },
-        objectId: 4111
+    objectId: 4111
+  },
+  'sensor-3': {
+    name: 'Kitchen',
+    description: 'Basic sensor in the kitchen.',
+    groupName: 'Level 1',
+    location: {
+      x: 10,
+      y: 41.64,
+      z: -12.15
     },
-    'sensor-4': {
-        name: 'Bedroom',
-        description: 'Basic sensor in the bedroom.',
-        groupName: 'Level 2',
-        location: {
-            x: -7.46,
-            y: 41.47,
-            z: 2.97
-        },
-        objectId: 4085
-    }
+    objectId: 4111
+  },
+  'sensor-4': {
+    name: 'Bedroom',
+    description: 'Basic sensor in the bedroom.',
+    groupName: 'Level 2',
+    location: {
+      x: -7.46,
+      y: 41.47,
+      z: 2.97
+    },
+    objectId: 4085
+  }
 };
 
 const CHANNELS = {
-    'temp': {
-        name: 'Temperature',
-        description: 'External temperature in degrees Celsius.',
-        type: 'double',
-        unit: '°C',
-        min: 18.0,
-        max: 28.0
-    },
-    'co2': {
-        name: 'CO₂',
-        description: 'Level of carbon dioxide.',
-        type: 'double',
-        unit: 'ppm',
-        min: 482.81,
-        max: 640.00
-    }
+  'temp': {
+    name: 'Temperature',
+    description: 'External temperature in degrees Celsius.',
+    type: 'double',
+    unit: '°C',
+    min: 18.0,
+    max: 28.0
+  },
+  'co2': {
+    name: 'CO₂',
+    description: 'Level of carbon dioxide.',
+    type: 'double',
+    unit: 'ppm',
+    min: 482.81,
+    max: 640.00
+  }
 };
 
 async function getSensors() {
