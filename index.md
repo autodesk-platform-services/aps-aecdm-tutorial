@@ -15,7 +15,7 @@ nav_order: 1
 Neste tutorial, vamos nos concentrar na conexão entre dados de sensores com o modelo usando a extensão Data Visualization do Viewer.
 Ao final do tutorial, teremos nosso app semelhante ao exemplo abaixo:
 
-![Final Result](/assets/images/complete.gif)
+![Final Result](/assets/images/iot_mocked.gif)
 
 Basicamente vamos renderizar um modelo (gerenciado pelo seu aplicativo APS, Autodesk Docs ou outro repositório em núvem da Autodesk. Detalhes [aqui](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) no navegador com o Viewer, adicionando [sprites](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/sprites/) que representarão sensores integrados com a nossa cena do modelo, de modo que tenhamos os [mapas de calor](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/heatmap/) representando os dados desses sensores de acordo com o gradiente de cores definido.
 

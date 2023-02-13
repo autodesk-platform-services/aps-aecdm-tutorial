@@ -115,48 +115,48 @@ No nosso caso, o arquivo ficou da seguite maneira
 ```js
 const SENSORS = {
   'sensor-1': {
-    name: 'Living Room',
-    description: 'Basic sensor in the middle of the living room.',
+    name: 'Sala TV/Jogos 39',
+    description: 'Sensor localizado na sala de jogos',
     groupName: 'Level 1',
     location: {
-      x: 31.92,
-      y: 11.49,
-      z: -12.97
+      x: 109.73640074812874, 
+      y: -171.81602478027344, 
+      z: -14.284410060014096
     },
-    objectId: 4124
+    objectId: 50165
   },
   'sensor-2': {
-    name: 'Dining Table',
-    description: 'Basic sensor at the dining table.',
+    name: 'Quitinete Tipo 02 85',
+    description: 'Sensor localizado na quitinete 85',
     groupName: 'Level 1',
     location: {
-      x: -10,
-      y: 41.64,
-      z: -12.15
+      x: 116.07907556072144, 
+      y: -148.61705993028409, 
+      z: -6.135171890258846
     },
-    objectId: 4111
+    objectId: 50800
   },
   'sensor-3': {
-    name: 'Kitchen',
-    description: 'Basic sensor in the kitchen.',
+    name: 'Hall 45',
+    description: 'Sensor localizado no hall',
     groupName: 'Level 1',
     location: {
-      x: 10,
-      y: 41.64,
-      z: -12.15
+      x: 106.51551963071785, 
+      y: -157.87245178222656, 
+      z: -13.44903700221414
     },
-    objectId: 4111
+    objectId: 50313
   },
   'sensor-4': {
-    name: 'Bedroom',
-    description: 'Basic sensor in the bedroom.',
+    name: 'APTO 1D Tipo 02 141',
+    description: 'Sensor localizado no apartamento 141',
     groupName: 'Level 2',
     location: {
-      x: -7.46,
-      y: 41.47,
-      z: 2.97
+      x: 83.50466918945312, 
+      y: -184.515209112987, 
+      z: -13.674205920613701
     },
-    objectId: 4085
+    objectId: 52421
   }
 };
 
