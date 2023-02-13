@@ -10,7 +10,7 @@ permalink: /cloning/home/
 
 Agora que já temos o modelo preparado podemos trabalhar com o nosso exemplo.
 
-O app base que iremos utilizar está em um repo público: https://github.com/autodesk-platform-services/aps-iot-extensions-demo
+O app base que iremos utilizar está em um repo público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
 
 Para começar a trabalhar com ele temos opções como clonar ou fazer download como zip, por exemplo.
 
