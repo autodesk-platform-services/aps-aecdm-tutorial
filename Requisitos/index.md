@@ -25,6 +25,8 @@ Ao término dessa etapa devemos ter nosso modelo base pronto para conexão, disp
 
 - Para concluir essa parte, devemos iniciar a tradução do arquivo. Aqui é de extrema importância traduzirmos o modelo rvt gerando os ambientes. Você pode conferir mais detalhes [nesse passo-a-passo](https://aps.autodesk.com/en/docs/model-derivative/v2/tutorials/prep-roominfo4viewer/) e [nessa lightning talk](https://youtu.be/GgW9gBCRrWg?t=232). Para facilitar, podemos usar o método customizado da nossa extensão
 
+![upload file](../../assets/images/start_translation.gif)
+
 Legal! Com isso já temos nosso modelo pronto para ser utilizado.
 
 ![model ready](../../assets/images/model_ready.gif)

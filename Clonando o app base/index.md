@@ -20,7 +20,7 @@ Para simplificar o gerenciamento armazenar nossas alterações, vamos trabalhar 
 
 Com a nossa própria versão configurada, podemos seguir o passo a passo do [README](https://github.com/JoaoMartins-callmeJohn/aps-iot-extensions-demo#running-locally) e clonar o exemplo (no gif abaixo foi utilizado o [GitHub Desktop](https://desktop.github.com))
 
-![clone IOT Sample](../../assets/images/fork_sample.gif)
+![clone IOT Sample](../../assets/images/clone_app.gif)
 
 Basicamente vamos:
 
