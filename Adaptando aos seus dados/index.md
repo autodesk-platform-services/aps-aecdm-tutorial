@@ -73,7 +73,7 @@ Para obter a posição central de um elemento podemos seguir as etapas
 
 ![selected element dbid](../../assets/images/selected_element_dbid.gif)
 
-  - digitar `getModifiedWorldBoundingBox(dbId).center()` (subctituindo dbid pelo valor encontrado na etapa anterior)
+  - digitar `getModifiedWorldBoundingBox(dbId).center()` (substituindo dbid pelo valor encontrado na etapa anterior)
 
 ![element center](../../assets/images/element_center.gif)
 
