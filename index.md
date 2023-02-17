@@ -13,7 +13,7 @@ nav_order: 1
 ## Introdução
 
 Neste tutorial, vamos nos concentrar na conexão entre dados de sensores com o modelo usando a extensão Data Visualization do Viewer.
-Ao final do tutorial, teremos nosso app semelhante ao exemplo abaixo:
+Ao final do tutorial, teremos nosso app semelhante ao exemplo abaixo.
 
 ![Final Result](/assets/images/iot_mocked.gif)
 
