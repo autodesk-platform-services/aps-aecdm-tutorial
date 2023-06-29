@@ -8,7 +8,7 @@ permalink: /requisites/home/
 
 # Requisitos
 
-Como mencionado na introdução do exercício, nessa primeira parte serão observados os requisitos necessários para conectar o modelo BIM com sensores IoT por meio da APS. Ao término dessa etapa, o modelo base estará pronto para conexão, e disponível em nosso [bucket](https://aps.autodesk.com/en/docs/data/v2/developers_guide/basics/#object-storage-service-oss). 
+Como mencionado na introdução do exercício, nessa primeira parte serão observados os requisitos necessários para conectar o modelo BIM com sensores IoT por meio da APS. Ao término dessa etapa, o modelo base estará pronto para conexão e disponível em nosso [bucket](https://aps.autodesk.com/en/docs/data/v2/developers_guide/basics/#object-storage-service-oss). 
 
 1. Primeiramente, abordaremos o modelo. Para esse tutorial, recomenda-se utilizar o dataset da [Vila dos Idosos](https://github.com/JoaoMartins-callmeJohn/iot-sample-tutorial/tree/main/assets/files). Sinta-se a vontade para fazer referência ao seu próprio modelo ou utilizar outros [exemplos](https://knowledge.autodesk.com/support/revit/getting-started/caas/CloudHelp/cloudhelp/2022/ENU/Revit-GetStarted/files/GUID-7B9C7A69-1083-406D-A01F-53D405C167F3-htm.html)(Um arquivo RVT é fortemente recomendado). Note que para esse tutorial, será necessário que os modelos tenham os ambientes definidos nos locar onde os sensores ficarão posicionados. Com isso podemos seguir para o próximo requisito
 
