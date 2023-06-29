@@ -8,13 +8,13 @@ permalink: /cloning/home/
 
 # Clonando o app base
 
-Agora que já temos o modelo preparado podemos trabalhar com o nosso exemplo.
+Agora que o modelo está preparado, pode-se trabalhar com o nosso exemplo de app.
 
-O app base que iremos utilizar está em um repo público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
+O app base de referência que será utilizado está em um repositório público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
 
-Para começar a trabalhar com ele temos opções como clonar ou fazer download como zip, por exemplo.
+Para começar a trabalhar com ele, há opções como clonar ou fazer download como zip, por exemplo.
 
-Para simplificar o gerenciamento armazenar nossas alterações, vamos trabalhar com um fork desse repo
+Para simplificar o gerenciamento e armazenar as eventuais alterações, recomenda-se trabalhar com um fork desse repo
 
 ![Fork IOT Sample](../../assets/images/fork_sample.gif)
 
