@@ -15,7 +15,7 @@ Como mencionado na introdução do exercício, nessa primeira parte serão obser
 2. Então, configura-se a sua disponibilidade. Este requisito consiste em disponibilizar o modelo na nuvem para conversão e visualização. Há diversas formas de viabilizar o modelo na nuvem, como descrito [nesse passo a passo](https://aps.autodesk.com/en/docs/data/v2/tutorials/app-managed-bucket/). Para simplificar o exercício (agora e em futuros desenvolvimentos), pode-se utilizar uma extensão desenvolvida para o VS Code. Basta seguir o passo a passo deste [blog](https://aps.autodesk.com/blog/forge-visual-studio-code) para instalar essa extensão. 
 
 - Uma vez a extensão instalada, pode-se criar um bucket
-![create bucket](../../assets/images/create_bucket.gif)
+[create bucket](../../assets/images/create_bucket.gif)
 
 - e fazer o upload do modelo
 ![upload file](../../assets/images/upload_file.gif)
