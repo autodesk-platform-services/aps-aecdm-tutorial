@@ -36,10 +36,10 @@ Basicamente, deve-se:
 
 Dessa forma, será possível verificar o app navegando até http://localhost:3000
 
-![localhost 3000](../../assets/images/localhost_3000.png)
+![localhost 3000](../../assets/images/localhost_3000.gif)
 
 O exemplo está funcionando, porém ainda é necessário ajustar aos dados do (modelo e sensores).
 
-Essa prática será objeto da próxima etapa
+Esse será o objetivo da próxima etapa
 
 [Próximo passo - Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/){: .btn}
