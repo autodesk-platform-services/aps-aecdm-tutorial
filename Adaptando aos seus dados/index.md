@@ -8,7 +8,7 @@ permalink: /adapting/home/
 
 # Adaptando aos seus dados
 
-Finalmente, o exemplo será ajustado aos dados do modelo e sensores.
+Agora o passo é ajustar o exemplo aos dados.
 
 ## Configurando model urn e view guid
 
@@ -32,11 +32,11 @@ Uma vez definidas essas variáveis, pode-se iniciar o exemplo com o comando `yar
 
 ## Ajustando os sensores
 
-Como é possivel visualizar, os sensores estão localizados em posições aleatórias, ainda sem fazer sentido no contexto do modelo.
+Como é possivel perceber, os sensores estão localizados em posições aleatórias, sem fazer sentido no contexto do modelo.
 
 O primeiro passo é determinar a posição dos sensores e os ambientes os quais os mesmos estão localizados.
 
-Neste ponto, há duas possibilidades:
+Aqui têm-se duas possibilidades:
 
 1. Os sensores estão presentes na cena como elementos do modelo:
 
@@ -109,9 +109,9 @@ Para isso, basta selecionar o ambiente e digitar `NOP_VIEWER.getSelection()` no 
 
 ## Adaptando iot.mocked.js
 
-Por fim, devemos ajustar o arquivo `iot.mocked.js` com os valores encontrados anteriormente para as posições dos sensores e dbids dos ambientes
+Por fim, deve-se ajustar o arquivo `iot.mocked.js` com os valores encontrados anteriormente para as posições dos sensores e dbids dos ambientes
 
-No nosso caso, o arquivo ficou da seguite maneira
+No nosso caso, o arquivo ficou da seguite maneira:
 
 ```js
 const SENSORS = {
@@ -247,7 +247,7 @@ module.exports = {
 
 ![iot mocked](../../assets/images/iot_mocked.gif)
 
-Com isso, o modelo estará pronto e com os sensores customizados.
+Logo, o modelo estará pronto e com os sensores customizados.
 
 A próxima etapa consiste em adicionar os dados dos sensores IoT em tempo real, entretanto essa parte não será abordada nesse tutorial.
 
@@ -256,3 +256,7 @@ A integração com dados de sensores em tempo real depende de conexões com banc
 Abaixo segue um diagrama simplificado da arquitetura de uma integração com conexão em tempo real.
 
 ![system architecture simple](../../assets/images/system-architecture-simple.png)
+
+No [exemplo utilizado por esse tutorial](https://github.com/autodesk-platform-services/aps-iot-extensions-demo) é possível encontrar alguns "branches" apontando para alternativas de implementação como na imagem abaixo:
+
+![db options](../../assets/images/db_options.png)

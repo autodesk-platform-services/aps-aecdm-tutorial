@@ -8,17 +8,15 @@ permalink: /cloning/home/
 
 # Clonando o app base
 
-Agora que o modelo está preparado, pode-se trabalhar com o nosso exemplo de app.
+Neste ponto, o qual o modelo já está preparado, é possível dar continuidade ao trabalho com este exemplo.
+O app base a ser utilizado está em um repo público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
 
-O app base de referência que será utilizado está em um repositório público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
-
-Para começar a trabalhar com ele, há opções como clonar ou fazer download como zip, por exemplo.
-
-Para simplificar o gerenciamento e armazenar as eventuais alterações, recomenda-se trabalhar com um fork desse repo
+Para começar a trabalhar com ele há opções como clonar ou fazer download como zip, por exemplo.
+Para simplificar o gerenciamento e armazenar as alterações, é recomendado trabalhar com um fork desse repo da seguinte forma:
 
 ![Fork IOT Sample](../../assets/images/fork_sample.gif)
 
-A partir da própria versão configurada, pode-se seguir o passo a passo do [README](https://github.com/JoaoMartins-callmeJohn/aps-iot-extensions-demo#running-locally) e clonar o exemplo (no gif abaixo foi utilizado o [GitHub Desktop](https://desktop.github.com))
+Com a própria versão configurada, pode-se seguir o passo a passo do [README](https://github.com/JoaoMartins-callmeJohn/aps-iot-extensions-demo#running-locally) e clonar o exemplo (no gif abaixo foi utilizado o [GitHub Desktop](https://desktop.github.com))
 
 ![clone IOT Sample](../../assets/images/clone_app.gif)
 
@@ -38,8 +36,7 @@ Dessa forma, será possível verificar o app navegando até http://localhost:300
 
 ![localhost 3000](../../assets/images/localhost_3000.gif)
 
-O exemplo está funcionando, porém ainda é necessário ajustar aos dados do (modelo e sensores).
-
-Esse será o objetivo da próxima etapa
+O exemplo estará funcionando, entretanto ainda será necessário ajustar os dados (modelo e sensores).
+Esse passo será realizado na próxima etapa.
 
 [Próximo passo - Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/){: .btn}
