@@ -28,9 +28,11 @@ Basicamente, deve-se:
 
 ![install IOT Sample](../../assets/images/yarn_install.gif)
 
-- Definir as variáveis de ambiente de acordo com seu app APS (`APS_CLIENT_ID` e `APS_CLIENT_SECRET`)
+- Definir as variáveis de ambiente de acordo com seu app APS (`APS_CLIENT_ID` e `APS_CLIENT_SECRET`). A forma mais fácil é alterando os valores do arquivo `.env.example` e renomeando o mesmo como .env
 
-- Iniciar o exemplo com o comando `yarn start`
+![env variables](../../assets/images/env_vars.gif)
+
+- Iniciar o exemplo com o comando usando a ferramenta de debug do VS Code
 
 Dessa forma, será possível verificar o app navegando até http://localhost:3000
 
