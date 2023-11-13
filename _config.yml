@@ -4,9 +4,8 @@ email: joao.martins@autodesk.com
 description: >- # this means to ignore newlines until "baseurl:"
   This documentation will guide you on how to build a sample for construction phasing. We'll go through the libraries required and Forge services.
 logo: "/assets/images/apslogo.png"
-
-baseurl: "/iot-sample-tutorial" # the subpath of your site, e.g. /blog
-url: "https://joaomartins-callmejohn.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com
 
 # permalink: none
 
