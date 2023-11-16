@@ -7,7 +7,7 @@ nav_order: 6
 
 # About this tutorial
 
-The purpose of this tutorial is to showcase the new AEC Data Model API and . This tutorial shouldn't be your first step with APS. If you're experimenting APS for the very first time, please go to [APS Tutorials page](http://aps.autodesk.com/tutorials).
+The purpose of this tutorial is to showcase the new AEC Data Model API. This tutorial shouldn't be your first step with APS. If you're experimenting APS for the very first time, please go to [APS Tutorials page](http://aps.autodesk.com/tutorials).
 
 In the content shared with this tutorial, we'll go through queries you can make using the new AEC Data Model API (currently in public beta).
 We'll walk you through the pre-requisites, initial workflows, advanced queries and some interesting cases that can be covered using this API.
