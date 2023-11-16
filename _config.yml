@@ -2,7 +2,7 @@ title: Tutorial de Conexão IOT
 remote_theme: just-the-docs/just-the-docs
 email: joao.martins@autodesk.com
 description: >- # this means to ignore newlines until "baseurl:"
-  This documentation will guide you on how to build a sample for construction phasing. We'll go through the libraries required and Forge services.
+  This documentation will showcase the new AEC Data Model API.
 logo: "/assets/images/apslogo.png"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://localhost:4000" # the base hostname & protocol for your site, e.g. http://example.com

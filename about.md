@@ -5,12 +5,17 @@ permalink: /about/
 nav_order: 6
 ---
 
-# Sobre o Tutorial
+# About this tutorial
 
-Este tutorial aborda a integração de modelos BIM com dados de sensores IoT. Para isso, serão explanadas todas as etapas necessárias, fazendo-se uso das APIs da Autodesk Platform Services (APS) e um exemplo simplificado. Este tutorial não deve ser o seu primeiro passo na APS. Se você é um usuário iniciante, por favor, navegue pelo [tutorial principal](http://aps.autodesk.com/tutorials).
+The purpose of this tutorial is to showcase the new AEC Data Model API and . This tutorial shouldn't be your first step with APS. If you're experimenting APS for the very first time, please go to [APS Tutorials page](http://aps.autodesk.com/tutorials).
 
-Você também pode encontrar o código-fonte completo do principal exemplo utilizado aqui no [github](https://github.com/autodesk-platform-services/aps-iot-extensions-demo).
+In the content shared with this tutorial, we'll go through queries you can make using the new AEC Data Model API (currently in public beta).
+We'll walk you through the pre-requisites, initial workflows, advanced queries and some interesting cases that can be covered using this API.
 
-Também há uma demonstração em tempo real disponível [aqui](https://aps-iot-extensions-demo.autodesk.io/)
+If you're interested in any of the following cases, then this tutorial is suitable to you:
 
-Caso tenha sugestões ou dúvidas, entre em contato conosco através do [suporte](mailto:aps.help@autodesk.com) (sempre em inglês para esse email)
+1. Querying metadata from your Revit designs (currently we only support designs from version 2024)
+2. Take advantage of cross-project queries
+3. Query design data from hub level
+4. Take advantage of the benefits of working with a GraphQL interface
+5. Experiment with the queries without the need of building any sample.
