@@ -12,17 +12,17 @@ nav_order: 1
 
 ## Introduction
 
-In this tutorial we'll cover the first steps to experiment the AEC Data Model API in a quick and simple way. At first, we'll go through the pre-requisites required to make everything work, and then we'll have a basic intro to the GraphQL interface (used by this API).
+In this tutorial, we'll cover the first steps in your journey with the AEC Data Model API in a quick and simple way. At first, we'll go through the prerequisites required to make everything work, and then we'll have a basic introduction to the GraphQL interface (used by this API).
 
-Once we got that covered, we'll run from basic queries to more advanced ones, always using the explorer, just like in the image below.
+Once we get that covered, we'll run from basic queries to more advanced ones, always using the explorer, just like in the image below.
 
 ![sample queries](../../assets/images/samplequery.gif)
 
-So don't worry if you're not a full-stack web developer, you don't need that to follow up this tutorial (although you will need to connect with one to build your own app leveraging our APIs).
+You don't have to worry if you're not a full-stack web developer as you won't need that level of expertise to follow up on this tutorial (although it's required to connect with one to build your own app leveraging our APIs).
 
-As long as you have familiarity with AEC industry workflows, Revit designs concepts, and curious about new technologies, you're in a good shape to go through the contents shared here.
+As long as you are familiar with Revit designs and ACC data structures, and curious about new technologies, you're in good shape to go through the contents shared here.
 
-This tutorial is divided in 4 main steps:
+This tutorial is divided into 4 main steps:
 
 1. [Requisites and GraphQL]({{ site.baseurl }}/requisites/home/)
 
@@ -31,3 +31,7 @@ This tutorial is divided in 4 main steps:
 3. [Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/)
 
 4. [Additional Workflows]({{ site.baseurl }}/workflows/home/)
+
+We'll start ensuring that everyone addresses the prerequisites.
+
+[Next Step - Prerequisites and GraphQL]({{ site.baseurl }}/prerequisites/home/){: .btn}

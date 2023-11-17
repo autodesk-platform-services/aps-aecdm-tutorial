@@ -3,18 +3,22 @@ layout: page
 title: Requisites and GraphQL
 nav_order: 2
 has_children: true
-permalink: /requisites/home/
+permalink: /prerequisites/home/
 ---
 
-# Requisites
+# Prerequisites
 
-Before jumping to action, there a few (but really important) pre-requisites you need to fulfill in order to be able to follow along with this tutorial:
+Before jumping to action, there are a few (but really important) pre-requisites you need to fulfill in order to be able to follow along with this tutorial:
 
-1. You'll need an ACC account allow-listed to generate AEC Designs from uploaded Revit 2024 files. To make this possible, the account owner of the ACC hub you're interested in using needs to join the AEC Data Model API beta, as described by [this blog post](https://aps.autodesk.com/blog/aec-data-model-apis-are-now-public-beta). **We recommend doing this as soon as possible as this process might take up to three business days and after that there are still pre requisites to be fulfilled prior to the bootcamp. So, please reach your ACC hub owner and ask him/her to [join AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!**. From the moment your ACC acount is enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow-listed**. Because of that, it is extremely important that you **only goes through step 2 if your ACC account has been enabled to generate AEC Designs**. Please, reach out to us in case it takes longer than expected.
+1. You'll need an ACC account allow-listed to generate AEC Designs from uploaded Revit 2024 files. To make this possible, the account owner of the ACC hub you're interested in using needs to join the AEC Data Model API beta, as described by [this blog post](https://aps.autodesk.com/blog/aec-data-model-apis-are-now-public-beta). **We recommend doing this as soon as possible as this process might take up to three business days and after that, there are still prerequisites to be fulfilled prior to the bootcamp. So, please reach your ACC hub owner and ask him/her to [join AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!**. From the moment your ACC account is enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow-listed**. Because of that, it is extremely important that you **only go through step 2 if your ACC account has been enabled to generate AEC Designs**. Please, reach out to us in case it takes longer than expected.
 
-2. With first step covered, it's time to make our files available for interacting with AEC Data Model API. For that, you just need to upload Revit 2024 designs in your hub. For our tutorial, we prepared a subset of files that you can download [here](). We just need you to upload those in your account at least one week prior to the tutorial date. If your account is allow-listed, please go ahead and **[download the files]() and upload them in a known project in your account**
+It works just like in the diagram below:
 
-3. [Provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll using in this tutorial.
+![translation diagram](../../assets/images/translationdiagram.gif)
+
+2. With the first step covered, it's time to make our files available for interacting with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](). You just need to upload those files to your account **at least one week prior to the tutorial date**. We're asking that because the translation process can take some time and if everybody submits all their files without enough time, some designs might not get translated in time. If your account is allow-listed, please go ahead and **[download the files]() and upload them in a known project in your account** as soon as possible.
+
+3. You'll also need to [provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll be using in this tutorial.
 
 Now let's cover a quick introduction on GraphQL.
 
@@ -95,7 +99,7 @@ To summarize, with GraphQL we have the benefits below:
 
 Before moving to the next step, lets run our very first query.
 
-For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, login, and run the query from the very first panel (hubs), just like in the image below:
+For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, login, and run the query from the very first panel (GetHubs), just like in the image below:
 
 ![First Query](../../assets/images/firstquery.gif)
 
