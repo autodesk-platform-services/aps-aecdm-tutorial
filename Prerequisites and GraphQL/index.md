@@ -8,21 +8,23 @@ permalink: /prerequisites/home/
 
 # Prerequisites
 
-Before jumping to action, there are a few (but really important) pre-requisites you need to fulfill in order to be able to follow along with this tutorial:
+Before jumping to action, there are a few (but really important) pre-requisites you need to fulfill in order to be able to follow along with this tutorial. **The steps need to be fulfilled in sequence for you to be able to follow this tutorial (only move to the next step after completing the previous one)**:
 
-1. You'll need an ACC account allow-listed to generate AEC Designs from uploaded Revit 2024 files. To make this possible, the account owner of the ACC hub you're interested in using needs to join the AEC Data Model API beta, as described in [this blog post](https://aps.autodesk.com/blog/aec-data-model-apis-are-now-public-beta). **We recommend doing this as soon as possible as this process might take up to three business days and after that, there are still prerequisites to be fulfilled before the bootcamp. So, please reach your ACC hub owner and ask him/her to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!** When your ACC account is enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow-listed**. Because of that, it is essential that you **only go through step 2 if your ACC account has been enabled to generate AEC Designs**. Please, reach out to us in case it takes longer than expected. It works just like in the diagram below:
+1. You'll need an ACC account. The AEC Data Model API works on top of Revit 2024 designs hosted on ACC, so if you don't have an ACC account, please
+
+2. You'll need to allow-listed to generate AEC Designs from uploaded Revit 2024 files. To make this possible, the account owner of the ACC hub you're interested in using needs to join the AEC Data Model API beta. **We recommend doing this as soon as possible as this process might take up to three business days and after that, there are still prerequisites to be fulfilled before the bootcamp. So, please reach your ACC hub owner and ask him/her to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!** When your ACC account is enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow-listed**. Please, reach out to us in case it takes longer than expected. It works just like in the diagram below:
    ![translation diagram](../../assets/images/translationdiagram.png)
    ![translation diagram](../assets/images/translationdiagram.png)
 
-2. With the first step covered, it's time to make our files available for interacting with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](). You just need to upload those files to your account **at least one week prior to the tutorial date**. We're asking that because the translation process can take some time and if everybody submits all their files without enough time, some designs might not get translated in time. If your account is allow-listed, please go ahead and **[download the files]() and upload them to a known project in your account** as soon as possible.
+3. With the first step covered, it's time to make our files available for interacting with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](). You just need to upload those files to your account **at least one week prior to the tutorial date**. We're asking that because the translation process can take some time and if everybody submits all their files without enough time, some designs might not get translated in time. If your account is allow-listed, please go ahead and **[download the files]() and upload them to a known project in your account** as soon as possible.
 
-3. You'll also need to [provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll be using in this tutorial.
+4. You'll also need to [provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll be using in this tutorial.
 
 Now let's cover a quick introduction on GraphQL.
 
 # GraphQL
 
-The way the AEC Data Model is structured makes it a perfect match for GraphqL.
+The way the AEC Data Model is structured makes it a perfect match for GraphQL.
 
 For those of you who are not familiar, it is a query language for APIs.
 It gives you the power to ask for exactly what you need and nothing more.
@@ -90,10 +92,10 @@ With REST API we would need additional requests, and wouldn't be possible to spe
 
 To summarize, with GraphQL we have the benefits below:
 
-- Single endpoint
-- No fixed Structure for the exchange of data
-- No over-fetching
-- Efficient resource-wise
+- Single REST API endpoint – You only need to send your query to this endpoint when coding it in your applications
+- No fixed Structure for the exchange of data – as compared to the Model Derivative REST API, where you will get a large JSON dataset, that you need to understand and be able to find the data you are looking for
+- No over-fetching – as compared to the Model Derivative REST API, where you may need to call various APIs several times to get the data you are looking for.
+- Efficiently using resources – Because the GraphQL implementation is on the Autodesk server side, it handles the requests to get the data you are asking for. This minimizes the traffic and allows us to optimize without disruption to the GraphQL aspects.
 
 Before moving to the next step, let's run our very first query.
 

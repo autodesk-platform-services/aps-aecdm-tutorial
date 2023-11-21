@@ -7,10 +7,12 @@ nav_order: 6
 
 # About this tutorial
 
-The purpose of this tutorial is to showcase the new AEC Data Model API. This tutorial shouldn't be your first step with APS. If you're experimenting APS for the very first time, please go to [APS Tutorials page](http://aps.autodesk.com/tutorials).
+The purpose of this tutorial is to showcase the new AEC Data Model API. It’s OK if you are not familiar with the overall Autodesk Platform Services APIs as the Data Models are brining a new approach to accessing granular data. But to be familiar with other aspects, especially when you are ready to code the AEC Data Model into you web app, please make sure you are familiar with APS. If you are new to the platform, you can start at the APS Tutorials page.
 
-In the content shared with this tutorial, we'll go through a subset of queries you can make using the new AEC Data Model API (currently in public beta).
-We'll walk you through the pre-requisites, initial workflows, advanced queries and some interesting cases that can be covered using this API.
+The AEC Data Model is a new approach for getting granular data. If you are already familiar with Model Derivative data from a Revit file, this data will look very familiar to you. The Data Model approach to accessing data brings a “real-time” aspect to the data, and also direct access to the data you need. Model Derivative is basically a file conversion, and as a result all the data is produced at once, putting the burden of accessing it granularly on you – the developer. The AEC Data Model instead will allow you access specific types of data directly, bringing the promise of granular data to life. Model Derivative data is a “snapshot” of data at a given time or version, while AEC Data Model once initially published, will stay synchronized by the Revit design changes, and also includes design versioning.
+
+In this tutorial, we'll go through a set of queries you can make using the new AEC Data Model API (currently in public beta).
+We'll walk you through the prerequisites, initial workflows, advanced queries and some interesting cases that can be covered using this API.
 
 If you're interested in any of the following cases, then this tutorial is suitable to you:
 
