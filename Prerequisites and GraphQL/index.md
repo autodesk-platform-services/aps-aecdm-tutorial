@@ -2,7 +2,7 @@
 layout: page
 title: Requisites and GraphQL
 nav_order: 2
-has_children: true
+has_children: false
 permalink: /prerequisites/home/
 ---
 

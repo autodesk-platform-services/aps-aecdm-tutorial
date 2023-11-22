@@ -8,35 +8,24 @@ permalink: /explorer/home/
 
 # Explorer and First Queries
 
-Neste ponto, o qual o modelo já está preparado, é possível dar continuidade ao trabalho com este exemplo.
-O app base a ser utilizado está em um repo público: [autodesk-platform-services/aps-iot-extensions-demo](https://github.com/autodesk-platform-services/aps-iot-extensions-demo)
+Now that you're in a good shape to use the AEC Data Model API, we can start experimenting with the queries and the explorer to get more confortable with this new service. In this section, we'll introduce you to the interface that will help us explore our design data in a simple way, focusing in the API itself. As said before, we don't want to worry about frameworks, coding and cloud providers at this point. We can keep it simple using the explorer.
 
-Para começar a trabalhar com ele há opções como clonar ou fazer download como zip, por exemplo.
-Para simplificar o gerenciamento e armazenar as alterações, é recomendado trabalhar com um fork desse repo da seguinte forma:
+The UI of the explorer is intended to be simple and intuitive. We'll use it mostly to perform our queries, but it can also be used to deep dive in the schema of the AEC Data Model API.
 
-![Fork IOT Sample](../../assets/images/fork_sample.gif)
+> The explorer is based in the [graphiql](https://github.com/graphql/graphiql) project! If you want additional details, feel free to check that out! ;)
 
-Com a própria versão configurada, pode-se seguir o passo a passo do [README](https://github.com/JoaoMartins-callmeJohn/aps-iot-extensions-demo#running-locally) e clonar o exemplo (no gif abaixo foi utilizado o [GitHub Desktop](https://desktop.github.com))
+With that said, we can begin our journey from the Data Schema.
 
-![clone IOT Sample](../../assets/images/clone_app.gif)
+## AEC Data Model Schema
 
-Basicamente, deve-se:
+As described by the GraphQL official content:
 
-- Instalar as dependências com `yarn install`
+> "Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema."
 
-![install IOT Sample](../../assets/images/yarn_install.gif)
+Our API has a schema that's suitable to address the common data from AEC industry.
 
-- Definir as variáveis de ambiente de acordo com seu app APS (`APS_CLIENT_ID` e `APS_CLIENT_SECRET`). A forma mais fácil é alterando os valores do arquivo `.env.example` e renomeando o mesmo como .env
+You can check it below:
 
-![env variables](../../assets/images/env_vars.gif)
-
-- Iniciar o exemplo com o comando usando a ferramenta de debug do VS Code
-
-Dessa forma, será possível verificar o app navegando até http://localhost:3000
-
-![localhost 3000](../../assets/images/localhost_3000.gif)
-
-O exemplo estará funcionando, entretanto ainda será necessário ajustar os dados (modelo e sensores).
-Esse passo será realizado na próxima etapa.
+![explorer UI](../../assets/images/explorerui.gif)
 
 [Next Step - Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/){: .btn}
