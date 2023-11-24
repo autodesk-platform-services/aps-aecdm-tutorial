@@ -46,6 +46,89 @@ Now that we know the importance of the schema and know how to view it using the 
 
 ## First Queries
 
-We suppose that you're familiar with how the data is organized in context of ACC hubs:
+We suppose that you're familiar with how the data is organized in context of ACC hubs but if not, here goes a quick overview:
 
-[Next Step - Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/){: .btn}
+At the top level we have the hubs.
+Inside each hub we have the projects.
+Inside a project there are multiple folders.
+Inside a folder we can have other folders or items.
+Lastly, an item can have multiple versions.
+
+![ACC hierarchy](../../assets/images/hierarchy.png)
+![ACC hierarchy](../assets/images/hierarchy.png)
+
+Let's traverse this structure through our queries in 4 steps:
+
+### Step 1 - Listing the hubs
+
+The query to retrieve the hubs is quite simple and it is available in the first panel of the explorer. To list the hubs available you just need to click in the first panel of the explorer and then run the query, like the gif below:
+
+![GET hubs](../../assets/images/gethubs.gif)
+![GET hubs](../assets/images/gethubs.gif)
+
+Now make sure you can see the hub you used to join the AEC Data Model beta and move to the next query.
+
+This tutorial will move to the next steps using the hub named as `AEC DM Developer Advocacy Support`.
+In the next query you'll need to use your hub id as input.
+
+> This id is the same one used by other APS APIs (ACC and Data Management) to point to hubs.
+
+### Step 2 - Listing the projects
+
+Following the hierarchy, we're going to list all of the projects available inside one hub. For that we'll need to provide the hub id as input of the get projects query.
+
+Go ahead and copy the id of the hub you're using, move to the GetProjects pane and paste the id in the proper field, just like in the gif below:
+
+![GET projects](../../assets/images/getprojects.gif)
+![GET projects](../assets/images/getprojects.gif)
+
+Now you'll need to find the project that hosts your Revit 2024 designs for this tutorial.
+
+This tutorial is using the project `AEC DM Bootcamp Project`, that's already visible in the first page of the response.
+
+In case your hub has many projects making the one you need to use missing from the first page (or even hard to find), there's a way to filter the response.
+
+For that you can filter the projects by name, passing the name of your project like the gif below:
+
+![GET projects](../../assets/images/getprojectsfilter.gif)
+![GET projects](../assets/images/getprojectsfilter.gif)
+
+For simplicity you can just copy and paste the query below if needed (replacing with your project name and hub id) ;)
+
+```js
+# Task 2 – Pick Projects
+query GetProjects {
+  projects(hubId: "YOUR HUB ID GOES HERE!",
+  filter:{name:"YOUR PROJECT NAME GOES HERE!"}) {
+    pagination {
+      cursor
+    }
+    results {
+      id
+      name
+      alternativeRepresentations{
+        externalProjectId
+      }
+    }
+  }
+}
+```
+
+The next query requires the project id, and AEC Data Model API works with its own unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
+We are not going to use the alternative representation for the projects in this tutorial but is always good to know how to retrieve it. You'll need it if you want to connect with ACC or Data Management APIs, for instance.
+
+### Step 3 - Listing Designs
+
+Usually inside a project we have a complete structure of folders separating files according to project phase, disciplines, teams, etc...
+You might be used to traverse this folder structure in order to reach your items level, but that isn't necessary when we use AEC Data Model API.
+
+There are queries that lists designs from a project and even from a hub.
+Obviously, by limiting the container the response is more precise, avoiding the need to go through multiple pages or filtering.
+
+In this step we'll focus on listing all the designs available in one specific project, using the desired project id.
+For that we just need to copy the project id from the previous step response, move to GetDesignsByProject pane and paste the project id in the GetDesignsByProject query. Just like in the gif below:
+
+![GET Designs](../../assets/images/getdesigns.gif)
+![GET Designs](../assets/images/getdesigns.gif)
+
+[Next Step - Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/adapting/home/){: .btn}
