@@ -114,7 +114,7 @@ query GetProjects {
 }
 ```
 
-The next query requires the project id, and AEC Data Model API works with its own unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
+The next query requires a project id, and AEC Data Model API works with its own unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
 We are not going to use the alternative representation for the projects in this tutorial but is always good to know how to retrieve it. You'll need it if you want to connect with ACC or Data Management APIs, for instance.
 
 ### Step 3 - Listing Designs
@@ -126,9 +126,87 @@ There are queries that lists designs from a project and even from a hub.
 Obviously, by limiting the container the response is more precise, avoiding the need to go through multiple pages or filtering.
 
 In this step we'll focus on listing all the designs available in one specific project, using the desired project id.
-For that we just need to copy the project id from the previous step response, move to GetDesignsByProject pane and paste the project id in the GetDesignsByProject query. Just like in the gif below:
+For that we just need to copy the project id from the previous step response, move to GetDesignsByProject pane and paste the project id in the `GetDesignsByProject` query. Just like in the gif below:
 
 ![GET Designs](../../assets/images/getdesigns.gif)
 ![GET Designs](../assets/images/getdesigns.gif)
+
+The response for this request will only list **AEC Designs** generated from the Revit 2024 files uploades in your hub. Since we're using a small set of files, there's no need to go through pagination yet (let's save it for the next step).
+
+If you notice the response for one specific design, you'll see that it contains the `alternativeRepresentations` field. In this case we are retrieving both **item Id** and **version Id**. We'll use the **version Id** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
+
+Before moving to next query we need to load the `Snowdon Towers Sample Facades` in Explorer's Viewer.
+
+This is quite simple to achieve ;), you just need to copy and paste the version id in the second input from the header and flick the switch to render the design. Just like in the gif below:
+
+![Load Viewer](../../assets/images/loadviewer.gif)
+![Load Viewer](../assets/images/loadviewer.gif)
+
+### Step 4 - Listing Elements
+
+Now we can explore the components from our designs. In the last query of this section we'll retrieve the elements from specific categories through supported filtered capabilities.
+
+Copy the design id from the `Snowdon Towers Sample Facades` available in the previous response and pass it to the `GetElementsFromCategory` query, just like in the gif below.
+
+![Get Elements](../../assets/images/getelements.gif)
+![Get Elements](../assets/images/getelements.gif)
+
+This query is listing all the elements based on their **category**. The filter applied:
+
+```js
+filter: {
+  query: "property.name.category==Walls";
+}
+```
+
+Retrieves only elements from **Walls** category.
+
+By default, the **Elements** query is limited to list only the first 50 elements, so it isn't listing all the walls from our design.
+
+> Refer top the table below (also available in the docs ;)
+
+| Used by query | Description                                                                                                                                   | Default limit | Maximum limit |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
+| hubs          | Contains a list of hubs returned in response to a query. A hub is a container of projects, shared resources, and users with a common context. | 100           | 200           |
+| projects      | Contains a list of projects returned in response to a query.                                                                                  | 100           | 200           |
+| folders       | Contains a list of hubs returned in response to a query. A hub is a container of projects, shared resources, and users with a common context. | 100           | 200           |
+| aecDesigns    | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
+| version       | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
+| elements      | Contains a list of object representing elements of a specific aecdesign.                                                                      | 50            | 100           |
+| properties    | Contains a list of object representing properties of a specific element.                                                                      | 100           | 500           |
+
+So let's improve our response by teawking it a little bit.
+First, we can change the default limit , returning to us the first 100 elements instead of only 50. We can also filter a bit more to return only the **instances**. In the current response, there are both types and instances. Since we're more interested in the later for viewing, we can also filter our response to only list instances.
+
+![Improving elements query](../../assets/images/getelementsimproved.gif)
+![Improving elements query](../assets/images/getelementsimproved.gif)
+
+The query will be just like the one below:
+
+```js
+# Task 4 – Get Elements within a design using a filter
+query GetElementsFromCategory {
+  elements(designId: "YOUR DESIGN ID HERE!",
+  filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
+  pagination:{limit:100}) {
+    pagination {
+      cursor
+    }
+    results {
+      id
+      name
+      properties {
+        results {
+          name
+          value
+        }
+      }
+    }
+  }
+}
+```
+
+And with that, we covered the first queries with the AEC Data Model API.
+In the next step, we'll understand how this connection with the viewer works and explore more complex queries.
 
 [Next Step - Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/adapting/home/){: .btn}
