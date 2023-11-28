@@ -100,4 +100,211 @@ And now you know what happens behind the scene to filter elements from the respo
 
 ## Advanced Queries
 
+The AEC Data Model API has great filtering capabilities, and we'll explore that a lot in the next queries. In this section we'll focus on advanced filtering capabilities, versioning, cross design querying, and references between elements.
+
+### Advanced Filtering Capabilities
+
+The filters available in AEC Data Model API enables us to filter our queries based on our designs metadata, limiting the results to match precisely what we're looking for.
+
+> For a future reference, check our documentation on filtering [here](https://aps.autodesk.com/en/docs/aecdatamodel-beta/v1/developers_guide/API%20Essentials/adv-filtering/) ;)
+
+Supose you need to count the total length of `Ducts` needed in your project.
+To achieve this, you can retrieve the elements (instances) from `Ducts` category in the **plumbing** design and limit the response to only list their sizes and lengths.
+
+The achieve this, you can use the query below:
+
+```js
+query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
+  elements(
+    designId: $designId
+    filter: {query: $elementsFilter}
+    pagination: {limit: 100}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      properties(filter: {names: ["Diameter", "Length"]}) {
+        results {
+          name
+          value
+          propertyDefinition {
+            units
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+With the Variables below:
+
+```js
+{
+  "designId": "YOUR DESIGN ID GOES HERE!",
+  "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance"
+}
+```
+
+Your response should begin with a cursor, meaning that you'll need to go through all the available pages to retrieve all the elements.
+
+We can point to the next page simply adding the cursor in our query, like the snippet below:
+
+```js
+query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
+  elements(
+    designId: $designId
+    filter: {query: $elementsFilter}
+    pagination: {limit: 100, cursor:"YOUR CURSOR GOES HERE!"}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      properties(filter: {names: ["Diameter", "Length"]}) {
+        results {
+          name
+          value
+          propertyDefinition {
+            units
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+The variables would be the same.
+
+### Versioning
+
+If you need to retrieve the elements from a specific version, that's also possible with the `elementsByDesignAtVersion` query.
+The query would be just like the snipet below:
+
+```js
+query GetDuctsFromDesignAtVersion($designId: ID!, $elementsFilter: String!, $versionNumber: Int!) {
+  elementsByDesignAtVersion(
+    designId: $designId
+    filter: {query: $elementsFilter}
+    versionNumber:$versionNumber
+    pagination: {limit: 100}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      properties(filter: {names: ["Diameter", "Length"]}) {
+        results {
+          name
+          value
+          propertyDefinition {
+            units
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+With Variables below:
+
+```js
+{
+  "designId": "YOUR DESIGN ID GOES HERE!",
+  "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance",
+  "versionNumber": <<YOUR VERSION NUMBER GOES HERE>>
+}
+```
+
+### Cross Design Querying
+
+So far so good. You nailed it and now your team can easily retrieve the total length of Ducts required to your project even divided by size, but the solution is still incomplete...
+
+There are ducts also in the plumbing sample (used in the water heaters).
+
+What if now you get asked to consider the ducts in **all disciplines**?
+Would you run this query in loop for each design from the project?
+No, there's no need for that.
+You can simply query the elements from project level (even from hub level ;)).
+
+You can achieve that with the query below:
+
+```js
+query GetDuctsFromProject($projectId: ID!, $elementsFilter: String!) {
+  elementsByProject(
+    projectId: $projectId
+    filter: {query: $elementsFilter}
+    pagination: {limit: 100}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      properties(filter: {names: ["Diameter", "Length"]}) {
+        results {
+          name
+          value
+          propertyDefinition {
+            units
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+With the Variables below:
+
+```js
+{
+  "designId": "YOUR DESIGN ID GOES HERE!",
+  "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance"
+}
+```
+
+And to handle the pagination using the cursos obtained, you can use the modified query below:
+
+```js
+query GetDuctsFromProject($projectId: ID!, $elementsFilter: String!) {
+  elementsByProject(
+    projectId: $projectId
+    filter: {query: $elementsFilter}
+    pagination: {limit: 100, cursor:"YOUR CURSOR GOES HERE!"}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      properties(filter: {names: ["Diameter", "Length"]}) {
+        results {
+          name
+          value
+          propertyDefinition {
+            units
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+This approach covers all the occurences in the entire project :)
+
+### References
+
+Great! You can now extract quantities filtering by category and properties, consider versioning, and even query from multiple designs in one single request.
+What if this time you need to do the same, but for one specific level? :neutral_face:
+
+To achieve this, we can use the **references** between the elements from our designs.
+
 [Next Step - Additional Workflows]({{ site.baseurl }}/workflows/home/){: .btn}
