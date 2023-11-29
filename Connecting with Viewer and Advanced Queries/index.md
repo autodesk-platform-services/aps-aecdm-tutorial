@@ -307,4 +307,47 @@ What if this time you need to do the same, but for one specific level? :neutral_
 
 To achieve this, we can use the **references** between the elements from our designs.
 
+THE CONTENT BELOW IS STILL TO BE TESTED
+Query below:
+
+```js
+query filter($projectId: ID!, $elementsFilter: String!) {
+  elementsByProject(
+    projectId: $projectId
+    filter: {query: $elementsFilter}
+    pagination: {limit: 100}
+  ) {
+    pagination {
+      cursor
+    }
+    results {
+      name
+      referencedBy(name:"Reference Level", filter:{query:"property.name.category==Ducts"}){
+        results{
+          name
+          properties(filter:{names:["Diameter", "Length"]}){
+            results{
+              name
+              value
+              propertyDefinition{
+                units
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Variables:
+
+```js
+{
+  "projectId": "YWltcHJvan5iLjIzOGNiN2FjLTVmNjYtNGRhNy05YzhkLWI5OWY2Zjg3ZWNkZn5iLmRkY2VjZDM0LTY4YjctNDFhZi1hZDY1LTJjZTU3MTE4NmM2Yw",
+  "elementsFilter": "'property.name.Element Name'==L2"
+}
+```
+
 [Next Step - Additional Workflows]({{ site.baseurl }}/workflows/home/){: .btn}
