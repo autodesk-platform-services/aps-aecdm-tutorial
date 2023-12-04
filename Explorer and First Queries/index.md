@@ -17,7 +17,7 @@ The explorer's UI was built to be simple and intuitive. We'll use it mostly to p
 
 > The explorer is built on top of the [graphiql](https://github.com/graphql/graphiql) project! If you want additional details on this project, feel free to check its documentation ;)
 
-It also comes with multiple functionalities to check the history of queries, format queries, configure themes and shortcuts, and a button to display the queries available with the API. This last option is the first one we'll go through, as it provides us access to our APIs schema. This will be our entry point. We'll start our journey by getting familiar with the AEC Data Model API schema.
+It also comes with multiple functionalities to check the history of queries, format queries, configure themes and shortcuts, and a button to display the queries available with the API. This last option is the first one we'll go through, as it provides us access to our API schema. This will be our entry point. We'll start our journey by getting familiar with the AEC Data Model API schema.
 
 ## AEC Data Model Schema
 
@@ -25,7 +25,7 @@ As described at [graphql.org](https://graphql.org/learn/schema/):
 
 > "Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema."
 
-Our API has a schema that's suitable to address the common data from the AEC industry. It's composed of the 5 constructs described below:
+Our API has a schema suitable to address the common data from the AEC industry. It's composed of the 5 constructs described below:
 
 - **Design**: A Design is a part of an AEC project that contains elements. Note that “Model” is sometimes used interchangeably with “Design”.
 - **Elements**: An Element is a building block of AEC design data. It represents an individual piece of an AEC design such as a wall, window, or door without enforcing a rigid definition. The absence of a rigid definition allows the Element to be flexible to adapt to the different requirements of an AEC design, now and in the future. The data contained in an Element gives it context by using Classification, Property, and Property Definition.
@@ -42,7 +42,7 @@ Log in with your Autodesk account, then click on the Docs button and scroll down
 
 The first query we used in the previous section returned to us a list of hubs. According to this documentation we could, for instance, use a filter to retrieve only the hubs matching certain conditions. Exploring the schema gives us a better idea about the capabilities of the API. If you scroll down you'll see a list with all the queries available including the parameters that can be passed to compose the responses.
 
-Now that we know the importance of the schema and know how to view it using the explorer, we can continue with the subsequent queries.
+Now that we know the schema's importance and know how to view it using the explorer, we can continue with the subsequent queries.
 
 ## First Queries
 
@@ -68,8 +68,8 @@ The query to retrieve the hubs is quite simple and it is available in the first 
 
 Now make sure you can see the hub you used to join the AEC Data Model beta listed in the response and move to the next query.
 
-This tutorial will move to the next steps using the hub named as `AEC DM Developer Advocacy Support`.
-In the next query you'll need to use your hub id as input.
+This tutorial will move to the next steps using the hub named `AEC DM Developer Advocacy Support`.
+In the next query, you'll need to use your hub id as input.
 
 > This id is the same one used by other APS APIs (ACC and Data Management) to point to hubs.
 
@@ -77,7 +77,7 @@ In the next query you'll need to use your hub id as input.
 
 Following the hierarchy, we're going to list all of the projects available inside one hub. For that, we'll need to provide the hub id as input for the get projects query.
 
-Go ahead and copy the id of the hub you're using, move to the `GetProjects` pane and paste the id in the proper field, just like in the gif below:
+Go ahead and copy the id of the hub you're using, move to the `GetProjects` pane, and paste the id in the proper field, just like in the gif below:
 
 ![GET projects](../../assets/images/getprojects.gif)
 ![GET projects](../assets/images/getprojects.gif)
@@ -114,15 +114,15 @@ query GetProjects {
 }
 ```
 
-The next query requires a project id, and AEC Data Model API works with its own unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
+The next query requires a project id, and AEC Data Model API works with its unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
 We are not going to use the alternative representation for the projects in this tutorial but is always good to know how to retrieve it. You'll need it if you want to connect with ACC APIs or Data Management APIs, for instance.
 
 ### Step 3 - Listing Designs
 
-Usually inside a project we have a complete structure of folders separating files according to project phase, disciplines, teams, etc...
-You might be used to traverse this folder structure in order to reach your items level, but that isn't necessary when we use AEC Data Model API.
+Usually inside a project, we have a complete structure of folders separating files according to project phase, disciplines, teams, etc...
+You might be used to traverse this folder structure to reach your items level, but that isn't necessary when we use AEC Data Model API.
 
-There are queries that lists designs from a project and even from a hub.
+There are queries that list designs from a project and even from a hub.
 Obviously, by limiting the container the response is more precise, avoiding the need to go through multiple pages or filtering.
 
 In this step we'll focus on listing all the designs available in one specific project, using the desired project id.
@@ -151,7 +151,7 @@ Copy the design id from the `Snowdon Towers Sample Facades` available in the pre
 ![Get Elements](../../assets/images/getelements.gif)
 ![Get Elements](../assets/images/getelements.gif)
 
-This query is listing all the elements based on their **category**. The filter applied:
+This query lists all the elements based on their **category**. The filter applied:
 
 ```js
 filter: {
@@ -163,7 +163,7 @@ Retrieves only elements from the **Walls** category.
 
 By default, the **Elements** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
 
-> Refer top the table below (also available in the docs ;)
+> Refer top the table below (also available in the docs ;))
 
 | Used by query | Description                                                                                                                                   | Default limit | Maximum limit |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |

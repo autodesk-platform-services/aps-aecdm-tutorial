@@ -1,15 +1,15 @@
 ---
 layout: page
 title: Connecting with Viewer and Advanced Queries
-nav_order: 4
+nav_order: 3
 has_children: false
 permalink: /connection/home/
 ---
 
 # Connecting with Viewer and Advanced Queries
 
-In this section, we'll understand how the explorer connects the elements retrieved from the response with the elements rendered with the Viewer.
-After this, we'll explore more complex workflows supported by then AEC Data Model API.
+In this section, we'll understand how the explorer connects the elements retrieved from the response with the elements rendered by the Viewer.
+After this, we'll explore more complex workflows supported by the AEC Data Model API.
 Let's begin with Viewer.
 
 ## Connecting with Viewer
@@ -46,7 +46,7 @@ return fetch("https://developer.api.autodesk.com/aecdatamodel/graphql", {
 });
 ```
 
-3. The elements are extracted from the AEC Data Model API response. Apart from the id we can see from the response, every element has an persistent id that remains the same in Revit, Viewer and AEC Data Model. For those familiar with Revit, this is the [UniqueId](https://www.revitapidocs.com/2024/f9a9cb77-6913-6d41-ecf5-4398a24e8ff8.htm). In the response this id is available in the **External Id** property. So we just need to retrieve every value for this property from the response, and the explorer does that using regular expressions through the snippet below:
+3. The elements are extracted from the AEC Data Model API response. Apart from the id we can see from the response, each element has a persistent id that remains the same in Revit, Viewer, and AEC Data Model. For those familiar with Revit, this is the [UniqueId](https://www.revitapidocs.com/2024/f9a9cb77-6913-6d41-ecf5-4398a24e8ff8.htm). In the response, this id is available in the **External Id** property. We just need to retrieve every value for this property from the response, and the explorer does that using regular expressions through the snippet below:
 
 ```js
 async retrieveOccurences(jsonResponse) {
@@ -73,11 +73,11 @@ async retrieveOccurences(jsonResponse) {
 
 > Regex is a good solution as it can address the variations of the response. Keep in mind that in GraphQL the response structure is flexible. ;)
 
-4. The list of ids is passed to Viewer. From Viewer's perspective, these values are available also as the **external id** property from each object. Since the Viewer uses the **dbId** in its methods, we can use the [getExternalIdMapping](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getexternalidmapping-onsuccesscallback-onerrorcallback) function to retrieve the correlation between **dbIds** and **external ids**.
+4. The list of ids is passed to the Viewer. From the Viewer's perspective, these values are available also as the **external id** property from each object. Since the Viewer uses the **dbId** in its methods, we can use the [getExternalIdMapping](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getexternalidmapping-onsuccesscallback-onerrorcallback) function to retrieve the correlation between **dbIds** and **external ids**.
 
 > We have [this blog](https://aps.autodesk.com/blog/get-dbid-externalid) on external ids in Viewer. Feel free to check it out ;)
 
-5. With the list of **dbIds**, we can simply use Viewer's [isolate](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getexternalidmapping-onsuccesscallback-onerrorcallback) and [fitToView](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#fittoview-objectids-model-immediate) methods to adjust the scene to focus in our elements.
+5. With the list of **dbIds**, we can simply use Viewer's [isolate](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/Model/#getexternalidmapping-onsuccesscallback-onerrorcallback) and [fitToView](https://aps.autodesk.com/en/docs/viewer/v7/reference/Viewing/GuiViewer3D/#fittoview-objectids-model-immediate) methods to adjust the scene to focus on our elements.
 
 Steps 4 and 5 are achieved with the snippet below:
 
@@ -96,20 +96,20 @@ async dbidsFromExternalIds(externalIds) {
 }
 ```
 
-And now you know what happens behind the scene to filter elements from the response in Viewer. Now we can focus in additional queries.
+And now you know what happens behind the scenes to filter elements from the response in Viewer. Now we can focus on additional queries.
 
 ## Advanced Queries
 
-The AEC Data Model API has great filtering capabilities, and we'll explore that a lot in the next queries. In this section we'll focus on advanced filtering capabilities, versioning, cross design querying, and references between elements.
+The AEC Data Model API has great filtering capabilities, and we'll explore that a lot in the next queries. In this section, we'll focus on advanced filtering capabilities, versioning, cross-design querying, and references between elements.
 
 ### Advanced Filtering Capabilities
 
-The filters available in AEC Data Model API enables us to filter our queries based on our designs metadata, limiting the results to match precisely what we're looking for.
+The filters available in AEC Data Model API enable us to filter our queries based on our design metadata, limiting the results to match precisely what we're looking for.
 
-> For a future reference, check our documentation on filtering [here](https://aps.autodesk.com/en/docs/aecdatamodel-beta/v1/developers_guide/API%20Essentials/adv-filtering/) ;)
+> For future reference, check our documentation on filtering [here](https://aps.autodesk.com/en/docs/aecdatamodel-beta/v1/developers_guide/API%20Essentials/adv-filtering/) ;)
 
-Supose you need to count the total length of `Ducts` needed in your project.
-To achieve this, you can retrieve the elements (instances) from `Ducts` category in the **plumbing** design and limit the response to only list their sizes and lengths.
+Suppose you need to count the total length of `Ducts` needed in your project.
+To achieve this, you can retrieve the elements (instances) from the `Ducts` category in the **Snowdon Towers Sample HVAC.rvt** design and limit the response to only list their sizes and lengths.
 
 The achieve this, you can use the query below:
 
@@ -150,7 +150,7 @@ With the Variables below:
 
 Your response should begin with a cursor, meaning that you'll need to go through all the available pages to retrieve all the elements.
 
-We can point to the next page simply adding the cursor in our query, like the snippet below:
+We can point to the next page by simply adding the cursor in our query, like the snippet below:
 
 ```js
 query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
@@ -178,12 +178,12 @@ query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
 }
 ```
 
-The variables would be the same.
+The variables remain the same.
 
 ### Versioning
 
 If you need to retrieve the elements from a specific version, that's also possible with the `elementsByDesignAtVersion` query.
-The query would be just like the snipet below:
+The query would be just like the snippet below:
 
 ```js
 query GetDuctsFromDesignAtVersion($designId: ID!, $elementsFilter: String!, $versionNumber: Int!) {
@@ -212,7 +212,7 @@ query GetDuctsFromDesignAtVersion($designId: ID!, $elementsFilter: String!, $ver
 }
 ```
 
-With Variables below:
+With the Variables below:
 
 ```js
 {
@@ -222,16 +222,16 @@ With Variables below:
 }
 ```
 
-### Cross Design Querying
+### Cross-Design Querying
 
-So far so good. You nailed it and now your team can easily retrieve the total length of Ducts required to your project even divided by size, but the solution is still incomplete...
+So far so good. You nailed the previous queries and now your team can easily retrieve the total length of Ducts required for your project even divided by size, but the solution is still incomplete...
 
 There are ducts also in the plumbing sample (used in the water heaters).
 
 What if now you get asked to consider the ducts in **all disciplines**?
-Would you run this query in loop for each design from the project?
-No, there's no need for that.
-You can simply query the elements from project level (even from hub level ;)).
+Would you run this query in a loop for each design from the project?
+No, there's no need for that!
+You can simply query the elements from the project level (even from the hub level ;)).
 
 You can achieve that with the query below:
 
@@ -270,7 +270,7 @@ With the Variables below:
 }
 ```
 
-And to handle the pagination using the cursos obtained, you can use the modified query below:
+To handle the pagination using the cursor obtained, you can use the modified query below:
 
 ```js
 query GetDuctsFromProject($projectId: ID!, $elementsFilter: String!) {
@@ -303,15 +303,14 @@ This approach covers all the occurences in the entire project :)
 ### References
 
 Great! You can now extract quantities filtering by category and properties, consider versioning, and even query from multiple designs in one single request.
-What if this time you need to do the same, but for one specific level? :neutral_face:
+What if this time you need to do the same, but for one specific level?
 
 To achieve this, we can use the **references** between the elements from our designs.
 
-THE CONTENT BELOW IS STILL TO BE TESTED
-Query below:
+Please refer to the query below:
 
 ```js
-query filter($projectId: ID!, $elementsFilter: String!) {
+query GetDuctsByLevelName($projectId: ID!, $elementsFilter: String!) {
   elementsByProject(
     projectId: $projectId
     filter: {query: $elementsFilter}
@@ -322,7 +321,14 @@ query filter($projectId: ID!, $elementsFilter: String!) {
     }
     results {
       name
-      referencedBy(name:"Reference Level", filter:{query:"property.name.category==Ducts"}){
+      design{
+        name
+      }
+      referencedBy(name:"Reference Level", filter:{query:"property.name.category==Ducts"}, pagination:{limit:100}){
+        pagination{
+          cursor
+        }
+        totalCount
         results{
           name
           properties(filter:{names:["Diameter", "Length"]}){
@@ -346,8 +352,13 @@ Variables:
 ```js
 {
   "projectId": "YWltcHJvan5iLjIzOGNiN2FjLTVmNjYtNGRhNy05YzhkLWI5OWY2Zjg3ZWNkZn5iLmRkY2VjZDM0LTY4YjctNDFhZi1hZDY1LTJjZTU3MTE4NmM2Yw",
-  "elementsFilter": "'property.name.Element Name'==L2"
+  "elementsFilter": "'property.name.Element Name'==L2 and property.name.category==Levels and 'property.name.Element Context'==Instance"
 }
 ```
+
+With the response from this query, you'll obtain a list of elements **referenced by all the instances with the name L2**. From these elements, we filter **the ones from the Ducts category and retrieve only the Diameter and Length properties**.
+
+Now you've covered many possible scenarios enabled by AEC Data Model API.
+In the next section, we'll share some additional workflows to induce your creativity.
 
 [Next Step - Additional Workflows]({{ site.baseurl }}/workflows/home/){: .btn}
