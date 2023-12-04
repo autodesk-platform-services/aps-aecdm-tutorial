@@ -351,7 +351,7 @@ Variables:
 
 ```js
 {
-  "projectId": "YWltcHJvan5iLjIzOGNiN2FjLTVmNjYtNGRhNy05YzhkLWI5OWY2Zjg3ZWNkZn5iLmRkY2VjZDM0LTY4YjctNDFhZi1hZDY1LTJjZTU3MTE4NmM2Yw",
+  "projectId": "YOUR PROJECT ID GOES HERE!",
   "elementsFilter": "'property.name.Element Name'==L2 and property.name.category==Levels and 'property.name.Element Context'==Instance"
 }
 ```
