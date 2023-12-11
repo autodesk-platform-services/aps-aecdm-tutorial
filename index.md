@@ -24,15 +24,13 @@ You don't have to worry if you're not a full-stack web developer as you won't ne
 
 As long as you are familiar with Revit designs and ACC data structures, and curious about new technologies, you're in good shape to go through the contents shared here.
 
-This tutorial is divided into 4 main steps:
+This tutorial is divided into 3 main sections:
 
 1. [Requisites and GraphQL]({{ site.baseurl }}/requisites/home/)
 
 2. [Explorer and First Queries]({{ site.baseurl }}/explorer/home/)
 
 3. [Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/)
-
-4. [Additional Workflows]({{ site.baseurl }}/workflows/home/)
 
 We'll start ensuring that everyone addresses the prerequisites.
 

@@ -42,6 +42,30 @@ Log in with your Autodesk account, then click on the Docs button and scroll down
 
 The first query we used in the previous section returned to us a list of hubs. According to this documentation we could, for instance, use a filter to retrieve only the hubs matching certain conditions. Exploring the schema gives us a better idea about the capabilities of the API. If you scroll down you'll see a list with all the queries available including the parameters that can be passed to compose the responses.
 
+> There's also another great tool to explore GraphQL API's schemas:
+> The [GraphQL Voyager](https://graphql-kit.com/graphql-voyager/)
+
+To try this tool, you just need to go through the three steps below:
+
+1. Go to the Voyager page, click on change the schema, and copy the introspection query
+
+![Copy the introspection](../../assets/images/copyintrospection.gif)
+![Copy the introspection](../assets/images/copyintrospection.gif)
+
+2. Paste and run the query in the AEC Data Model Explorer
+
+![Run the introspection](../../assets/images/runintrospection.gif)
+![Run the introspection](../assets/images/runintrospection.gif)
+
+3. Copy the response, paste it back in the Voyager app and click in the `DISPLAY` button
+
+![Copy the response](../../assets/images/copyresponse.gif)
+![Copy the response](../assets/images/copyresponse.gif)
+
+With that you will be able to inspect all the available queries and constructs from AEC Data Model API.
+
+> Keep one tab with the schema open for further exploration throughout this tutorial ;)
+
 Now that we know the schema's importance and know how to view it using the explorer, we can continue with the subsequent queries.
 
 ## First Queries
@@ -86,20 +110,14 @@ Now you'll need to find the project that hosts your Revit 2024 designs for this 
 
 This tutorial uses the project `AEC DM Bootcamp Project`, which is already visible on the first page of the response.
 
-In case your hub has many projects making the one you need to use missing from the first page (or even hard to find), there's a way to filter the response.
+The GetProjects query available in the explorer, as is, requires you to paste the `hub id` as a string argument, but you can also asign that using the Variables.
 
-For that you can filter the projects by name, passing the name of your project like the gif below:
-
-![GET projects](../../assets/images/getprojectsfilter.gif)
-![GET projects](../assets/images/getprojectsfilter.gif)
-
-For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
+Using Variables instead, the query would be just like the one below:
 
 ```js
 # Task 2 – Pick Projects
-query GetProjects {
-  projects(hubId: "YOUR HUB ID GOES HERE!",
-  filter:{name:"YOUR PROJECT NAME GOES HERE!"}) {
+query GetProjects ($hubId:ID!) {
+  projects(hubId: $hubId) {
     pagination {
       cursor
     }
@@ -111,6 +129,50 @@ query GetProjects {
       }
     }
   }
+}
+```
+
+And in Variables space, the id of the hub:
+
+```js
+{
+  "hubId": "YOUR HUB ID HERE!"
+}
+```
+
+This way is better to address variables as they can be assigned multiple time easier at any place in the query, and we don't need to change any value in the query to point to a different hub.
+
+In case your hub has many projects making the one you need to use missing from the first page (or even hard to find), there's a way to filter the response.
+
+For that you can filter the projects by name, passing the name of your project like the gif below:
+
+![GET projects](../../assets/images/getprojectsfilter.gif)
+![GET projects](../assets/images/getprojectsfilter.gif)
+
+For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
+
+```js
+# Task 2 – Pick Projects
+query GetProjects ($hubId:ID!, $projectName:String!) {
+  projects(hubId: $hubId, filter:{name:$projectName}) {
+    pagination {
+      cursor
+    }
+    results {
+      id
+      name
+      alternativeRepresentations{
+        externalProjectId
+      }
+    }
+  }
+}
+```
+
+```js
+{
+  "hubId": "YOUR HUB ID HERE!",
+  "projectName": "YOUR PROJECT NAME HERE!"
 }
 ```
 
@@ -132,6 +194,8 @@ For that, we just need to copy the project id from the previous step response, m
 ![GET Designs](../assets/images/getdesigns.gif)
 
 The response for this request will only list **AEC Designs** generated from the Revit 2024 files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
+
+> Feeling comfortable with GraphQL already? Why don't you try changing this query to use variables insted of "hardcoded" arguments? ;)
 
 If you notice the response for one specific design, you'll see that it contains the `alternativeRepresentations` field. In this case, we are retrieving both **item Id** and **version Id**. We'll use the **version Id** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
 
@@ -172,7 +236,7 @@ By default, the **Elements** query is limited to listing only the first 50 eleme
 | folders       | Contains a list of hubs returned in response to a query. A hub is a container of projects, shared resources, and users with a common context. | 100           | 200           |
 | aecDesigns    | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
 | version       | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
-| elements      | Contains a list of object representing elements of a specific aecdesign.                                                                      | 50            | 100           |
+| elements      | Contains a list of object representing elements of a specific aecdesign.                                                                      | 50            | 500           |
 | properties    | Contains a list of object representing properties of a specific element.                                                                      | 100           | 500           |
 
 So let's improve our response by tweaking it a little bit.
@@ -188,7 +252,36 @@ The query will be just like the one below:
 query GetElementsFromCategory {
   elements(designId: "YOUR DESIGN ID HERE!",
   filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
-  pagination:{limit:100}) {
+  pagination:{limit:500}) {
+    pagination {
+      cursor
+    }
+    results {
+      id
+      name
+      properties {
+        results {
+          name
+          value
+        }
+      }
+    }
+  }
+}
+```
+
+Now imagine that in your workflow, the resulting elements are referred simply as Walls as they are from the Walls category.
+
+Using **Aliases** you can change the elements field name to anything that you need.
+
+Using the query below, instead, you'll retrieve the elements named as Walls:
+
+```js
+# Task 4 – Get Elements within a design using a filter
+query GetElementsFromCategory {
+  Walls: elements(designId: "YOUR DESIGN ID HERE!",
+  filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
+  pagination:{limit:500}) {
     pagination {
       cursor
     }

@@ -359,6 +359,5 @@ Variables:
 With the response from this query, you'll obtain a list of elements **referenced by all the instances with the name L2**. From these elements, we filter **the ones from the Ducts category and retrieve only the Diameter and Length properties**.
 
 Now you've covered many possible scenarios enabled by AEC Data Model API.
-In the next section, we'll share some additional workflows to induce your creativity.
-
-[Next Step - Additional Workflows]({{ site.baseurl }}/workflows/home/){: .btn}
+From now you have more than enough to start experimenting with your own custom workflows on you own designs.
+We also have a few samples with live demo and source code available for you to leverage.

@@ -1,0 +1,26 @@
+.nav-list-item a {
+  color: DarkBlue !important;
+}
+
+@font-face { 
+  font-family: ArtifaktElement-Regular;
+  src: url(../../img/ArtifaktElement-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family:ArtifaktElement-Regular,sans-serif !important;
+}
+
+.main-header {
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+
+.side-bar footer {
+    display: none;
+}
+
+.site-header { background-color: black; }

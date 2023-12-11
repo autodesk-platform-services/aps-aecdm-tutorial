@@ -1,6 +1,8 @@
 title: Tutorial de Conexão IOT
 remote_theme: just-the-docs/just-the-docs
 email: joao.martins@autodesk.com
+heading_anchors: true
+footer_content: '<a href="https://github.com/wallabyway/dummy-docs/issues">Report an issue</a> with this page.'
 description: >- # this means to ignore newlines until "baseurl:"
   This documentation will showcase the new AEC Data Model API.
 logo: "/assets/images/apslogo.png"

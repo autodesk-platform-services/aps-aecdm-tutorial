@@ -27,7 +27,9 @@ Now let's cover a quick introduction on GraphQL.
 The way the AEC Data Model is structured makes it a perfect match for GraphQL.
 
 For those of you who are not familiar, it is a query language for APIs.
-It gives you the power to ask for exactly what you need and nothing more.
+It Provides a complete and understandable description of the data in your API, and gives you the power to ask for exactly what you need and nothing more.
+
+GraphQL is much easier to use than REST, but need to have better understanding of the data structures​.
 
 With one single endpoint, it makes fetching data easier as you don't need to make requests to multiple endpoints to obtain a set of data.
 
@@ -106,5 +108,7 @@ For that, you just need to go to the explorer app at `https://aecdatamodel-explo
 
 If you don't see your ACC hub listed, please double check step 3.
 Once you see your hub, you can move on to the next step.
+
+> We'll get back to GraphQL syntax throughout the queries from next section. As it's not like the usual REST requests, we'll cover the differences and possibilities in parallel, while also learning the supported AEC Data Model API queries.
 
 [Next Step - Explorer and First Queries]({{ site.baseurl }}/explorer/home/){: .btn}
