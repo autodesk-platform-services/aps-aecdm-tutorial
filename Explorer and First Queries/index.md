@@ -8,14 +8,16 @@ permalink: /explorer/home/
 
 # Explorer and First Queries
 
-Now that you're in good shape to use the AEC Data Model API, we can start experimenting with the queries and the explorer to get more comfortable with this new service. In this section, we'll introduce you to the interface that will help you explore your design data, focusing mainly in the API. As said before, we don't want to worry about frameworks, coding and cloud providers. We can keep it simple using the [explorer](https://aecdatamodel-explorer.autodesk.io).
+Now that you're in good shape to use the AEC Data Model API, we can start experimenting with the queries and the explorer to get more comfortable with this new service.
+
+In this section, we'll introduce you to the interface that will help you explore your design data, focusing mainly on the API. As said before, we don't want you to worry about frameworks, coding, and cloud providers. We can keep it simple using the [explorer](https://aecdatamodel-explorer.autodesk.io).
 
 The explorer's UI was built to be simple and intuitive. We'll use it mostly to perform our queries by passing the payload and checking the response, just like in the image below:
 
 ![Explorer UI](../../assets/images/explorerui.png)
 ![Explorer UI](../assets/images/explorerui.png)
 
-> The explorer is built on top of the [graphiql](https://github.com/graphql/graphiql) project! If you want additional details on this project, feel free to check its documentation ;)
+> _The explorer is built on top of the [graphiql](https://github.com/graphql/graphiql) project! If you want additional details on this project, feel free to check its documentation ;)_
 
 It also comes with multiple functionalities to check the history of queries, format queries, configure themes and shortcuts, and a button to display the queries available with the API. This last option is the first one we'll go through, as it provides us access to our API schema. This will be our entry point. We'll start our journey by getting familiar with the AEC Data Model API schema.
 
@@ -23,7 +25,7 @@ It also comes with multiple functionalities to check the history of queries, for
 
 As described at [graphql.org](https://graphql.org/learn/schema/):
 
-> "Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema."
+> _"Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema."_
 
 Our API has a schema suitable to address the common data from the AEC industry. It's composed of the 5 constructs described below:
 
@@ -32,6 +34,8 @@ Our API has a schema suitable to address the common data from the AEC industry. 
 - **Reference Property**: A reference property describes the relationship between elements.
 - **Property**: A Property is a well-defined granular piece of data that describes the Element. For example: Revit parameters and their values like area, volume, length, etc.
 - **Property Definition**: A Property Definition provides detailed information about a Property. It contains metadata that gives context to the Property. For example: Unit, type, etc.
+
+### Explorer Docs
 
 Now let's use the explorer to view our schema.
 
@@ -42,29 +46,31 @@ Log in with your Autodesk account, then click on the Docs button and scroll down
 
 The first query we used in the previous section returned to us a list of hubs. According to this documentation we could, for instance, use a filter to retrieve only the hubs matching certain conditions. Exploring the schema gives us a better idea about the capabilities of the API. If you scroll down you'll see a list with all the queries available including the parameters that can be passed to compose the responses.
 
+### GraphQL Voyager
+
 > There's also another great tool to explore GraphQL API's schemas:
 > The [GraphQL Voyager](https://graphql-kit.com/graphql-voyager/)
 
 To try this tool, you just need to go through the three steps below:
 
-1. Go to the Voyager page, click on change the schema, and copy the introspection query
+- Go to the Voyager page, click on change the schema, and copy the introspection query
 
 ![Copy the introspection](../../assets/images/copyintrospection.gif)
 ![Copy the introspection](../assets/images/copyintrospection.gif)
 
-2. Paste and run the query in the AEC Data Model Explorer
+- Paste and run the query in the AEC Data Model Explorer
 
 ![Run the introspection](../../assets/images/runintrospection.gif)
 ![Run the introspection](../assets/images/runintrospection.gif)
 
-3. Copy the response, paste it back in the Voyager app and click in the `DISPLAY` button
+- Copy the response, paste it back in the Voyager app and click in the `DISPLAY` button
 
 ![Copy the response](../../assets/images/copyresponse.gif)
 ![Copy the response](../assets/images/copyresponse.gif)
 
 With that you will be able to inspect all the available queries and constructs from AEC Data Model API.
 
-> Keep one tab with the schema open for further exploration throughout this tutorial ;)
+> _Keep one tab with the schema open for further exploration throughout this tutorial ;)_
 
 Now that we know the schema's importance and know how to view it using the explorer, we can continue with the subsequent queries.
 
@@ -95,7 +101,7 @@ Now make sure you can see the hub you used to join the AEC Data Model beta liste
 This tutorial will move to the next steps using the hub named `AEC DM Developer Advocacy Support`.
 In the next query, you'll need to use your hub id as input.
 
-> This id is the same one used by other APS APIs (ACC and Data Management) to point to hubs.
+> _This id is the same one used by other APS APIs (ACC and Data Management) to point to hubs._
 
 ### Step 2 - Listing the projects
 
@@ -115,7 +121,6 @@ The GetProjects query available in the explorer, as is, requires you to paste th
 Using Variables instead, the query would be just like the one below:
 
 ```js
-# Task 2 – Pick Projects
 query GetProjects ($hubId:ID!) {
   projects(hubId: $hubId) {
     pagination {
@@ -152,7 +157,6 @@ For that you can filter the projects by name, passing the name of your project l
 For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
 
 ```js
-# Task 2 – Pick Projects
 query GetProjects ($hubId:ID!, $projectName:String!) {
   projects(hubId: $hubId, filter:{name:$projectName}) {
     pagination {
@@ -195,7 +199,7 @@ For that, we just need to copy the project id from the previous step response, m
 
 The response for this request will only list **AEC Designs** generated from the Revit 2024 files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
 
-> Feeling comfortable with GraphQL already? Why don't you try changing this query to use variables insted of "hardcoded" arguments? ;)
+> _Feeling comfortable with GraphQL already? Why don't you try changing this query to use variables insted of "hardcoded" arguments? ;)_
 
 If you notice the response for one specific design, you'll see that it contains the `alternativeRepresentations` field. In this case, we are retrieving both **item Id** and **version Id**. We'll use the **version Id** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
 
@@ -227,7 +231,7 @@ Retrieves only elements from the **Walls** category.
 
 By default, the **Elements** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
 
-> Refer top the table below (also available in the docs ;))
+> _Refer top the table below (also available in the docs)_
 
 | Used by query | Description                                                                                                                                   | Default limit | Maximum limit |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
@@ -248,7 +252,6 @@ We can change the default limit, returning to us the first 100 elements instead 
 The query will be just like the one below:
 
 ```js
-# Task 4 – Get Elements within a design using a filter
 query GetElementsFromCategory {
   elements(designId: "YOUR DESIGN ID HERE!",
   filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
@@ -270,6 +273,8 @@ query GetElementsFromCategory {
 }
 ```
 
+> _Once more, feel free to change this query to use variables insted of "hardcoded" arguments? ;)_
+
 Now imagine that in your workflow, the resulting elements are referred simply as Walls as they are from the Walls category.
 
 Using **Aliases** you can change the elements field name to anything that you need.
@@ -277,7 +282,6 @@ Using **Aliases** you can change the elements field name to anything that you ne
 Using the query below, instead, you'll retrieve the elements named as Walls:
 
 ```js
-# Task 4 – Get Elements within a design using a filter
 query GetElementsFromCategory {
   Walls: elements(designId: "YOUR DESIGN ID HERE!",
   filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
@@ -302,4 +306,4 @@ query GetElementsFromCategory {
 And with that, we covered the first queries with the AEC Data Model API.
 In the next step, we'll understand how this connection with the viewer works and explore more complex queries.
 
-[Next Step - Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/adapting/home/){: .btn}
+[Next Step - Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/){: .btn}

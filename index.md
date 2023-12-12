@@ -20,13 +20,15 @@ Once we get that covered, we'll run from basic queries to more advanced ones, al
 
 <!-- ![sample queries](./assets/images/samplequery.gif) -->
 
-You don't have to worry if you're not a full-stack web developer as you won't need that level of expertise to follow up on this tutorial (although it's required to connect with one to build your own app leveraging our APIs).
+Don't worry if you're not a full-stack web developer. You won't need that level of expertise to follow up on this tutorial (although it's required to connect with one to build your own app leveraging our APIs).
 
-As long as you are familiar with Revit designs and ACC data structures, and curious about new technologies, you're in good shape to go through the contents shared here.
+As long as you are familiar with Revit designs and Autodesk Construction Cloud data structures, and curious about new technologies, you're in good shape to go through the contents shared here.
+
+> _From now on, we'll be referring to **Autodesk Construction Cloud** as **ACC** for simplicity_
 
 This tutorial is divided into 3 main sections:
 
-1. [Requisites and GraphQL]({{ site.baseurl }}/requisites/home/)
+1. [Requisites and GraphQL]({{ site.baseurl }}/prerequisites/home/)
 
 2. [Explorer and First Queries]({{ site.baseurl }}/explorer/home/)
 
