@@ -28,12 +28,12 @@ As long as you are familiar with Revit designs and Autodesk Construction Cloud d
 
 This tutorial is divided into 3 main sections:
 
-1. [Requisites and GraphQL]({{ site.baseurl }}/prerequisites/home/)
+1. [Requisites and GraphQL](./prerequisites/home/)
 
-2. [Explorer and First Queries]({{ site.baseurl }}/explorer/home/)
+2. [Explorer and First Queries](./explorer/home/)
 
 3. [Connecting with Viewer and Advanced Queries](./connection/home/)
 
 We'll start ensuring that everyone addresses the prerequisites.
 
-[Next Step - Prerequisites and GraphQL]({{ site.baseurl }}/prerequisites/home/){: .btn}
+[Next Step - Prerequisites and GraphQL](./prerequisites/home/){: .btn}

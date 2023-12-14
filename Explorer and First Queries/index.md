@@ -306,4 +306,4 @@ query GetElementsFromCategory {
 And with that, we covered the first queries with the AEC Data Model API.
 In the next step, we'll understand how this connection with the viewer works and explore more complex queries.
 
-[Next Step - Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/){: .btn}
+[Next Step - Connecting with Viewer and Advanced Queries](./connection/home/){: .btn}

@@ -111,4 +111,4 @@ Once you see your hub, you can move on to the next step.
 
 > _We'll get back to GraphQL syntax throughout the queries in the next section. As it's not like the usual REST requests, we'll cover the differences and possibilities in parallel, while also learning the supported AEC Data Model API queries._
 
-[Next Step - Explorer and First Queries]({{ site.baseurl }}/explorer/home/){: .btn}
+[Next Step - Explorer and First Queries](./explorer/home/){: .btn}
