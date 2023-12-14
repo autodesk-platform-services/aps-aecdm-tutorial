@@ -28,7 +28,7 @@ As long as you are familiar with Revit designs and Autodesk Construction Cloud d
 
 This tutorial is divided into 3 main sections:
 
-1. [Requisites and GraphQL](./prerequisites/home/)
+1. [Prerequisites and GraphQL](./prerequisites/home/)
 
 2. [Explorer and First Queries](./explorer/home/)
 
