@@ -32,7 +32,7 @@ This tutorial is divided into 3 main sections:
 
 2. [Explorer and First Queries]({{ site.baseurl }}/explorer/home/)
 
-3. [Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/)
+3. [Connecting with Viewer and Advanced Queries](./connection/home/)
 
 We'll start ensuring that everyone addresses the prerequisites.
 
