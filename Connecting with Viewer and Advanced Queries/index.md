@@ -17,7 +17,6 @@ Let's begin with Viewer.
 Every time you run a query against a specific design and the same design is rendered in the Viewer, the elements from the response are isolated in the Viewer scene.
 To understand the process, let's analyze the diagram below:
 
-![Viewer Connection Process](../../assets/images/viewerconnectionprocess.png)
 ![Viewer Connection Process](../assets/images/viewerconnectionprocess.png)
 
 1. It starts when the user push the button to run a query.

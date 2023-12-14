@@ -13,7 +13,7 @@ Before jumping into action, you need to fulfill a few (but essential) prerequisi
 1. Firstly, you will need an ACC account from the **AMER region**. The AEC Data Model API works based on Revit 2024 designs hosted on ACC hubs in the **AMER region** , so it is **required**. Although the scope of this tutorial is just reading data, we recommend that you create a separate project for testing the AEC Data Model API. If you don't have access to an **AMER ACC hub**, you can find options for getting a test account on [this blog](https://fieldofviewblog.wordpress.com/2017/08/31/bim-360-acc-account-for-development/). **Make sure you now have access to an ACC hub in the AMER region and only then proceed to the next prerequisite.**
 
 2. Once you get access to your hub, you'll need to enable it to generate AEC Designs from uploaded Revit 2024 files. To make this possible, **the account owner** of the ACC hub you're interested in using needs to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta). **We recommend doing this as soon as possible as this process might take up to three business days and after that, there are still prerequisites to be fulfilled before the bootcamp. So, please reach out to your ACC hub owner and ask him/her to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!** After your ACC account gets enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow listed**. Please, reach out to us in case it takes longer than expected. The process works just like in the diagram below:
-   ![translation diagram](../../assets/images/translationdiagram.png)
+
    ![translation diagram](../assets/images/translationdiagram.png)
 
 3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=f9b940e2-12b2-4617-9a87-630451008498). You just need to download the .zip file, unzip it, and then upload the Revit files to your account **at least one week before the tutorial date**. We are asking this because the translation process can take some time and if everyone uploads all their files without enough time, some designs may not get translated in time. If your account is allow listed, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=f9b940e2-12b2-4617-9a87-630451008498), and upload them to a known project in your ACC AMER account** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
@@ -103,7 +103,6 @@ Before moving to the next step, let's run our very first query.
 
 For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, log in, and run the query from the very first panel (GetHubs), just like in the image below:
 
-![First Query](../../assets/images/firstquery.gif)
 ![First Query](../assets/images/firstquery.gif)
 
 If you don't see your ACC hub listed, please double check step 3.
