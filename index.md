@@ -8,28 +8,32 @@ permalink: /
 nav_order: 1
 ---
 
-# Tutorial
+# AEC Data Model API Tutorial
 
-## Introdução
+## Introduction
 
-Neste tutorial, será abordada a conexão entre dados de sensores IoT com o modelo BIM, utilizando a extensão Data Visualization do Viewer. O resultado do tutorial será um aplicativo semelhante ao exemplo abaixo, no qual é apresentado o modelo BIM "pintado" representando dados de desempenho medidos em tempo real, bem como gráficos que exibem as séries temporais da rede de sensores instalada. Este é um exemplo de Gêmeo Digital Informativo (para saber mais sobre níveis de maturidade de um Gêmeo Digital [clique aqui](https://redshift.autodesk.com/articles/what-is-a-digital-twin/)).
+In this tutorial, we'll cover the first steps in your journey with the AEC Data Model API in a quick and simple way. At first, we'll go through the prerequisites required to make everything work, and then we'll have a basic introduction to the GraphQL interface (used by this API).
 
-Os recursos de interatividade são diversos e capazes de abarcar filtros e localizações rápidas de sensores e dados de forma contextualizada. A partir deste resultado, é possível obter insights de monitoramento e controle do ambiente construído e subsidiar análises preditivas, principalmente, para Operação e Manutenção (O&M).
+Once we get that covered, we'll run from basic queries to more advanced ones, always using the explorer, just like in the image below.
 
-![Final Result](/assets/images/iot_mocked.gif)
+![sample queries](../../assets/images/samplequery.gif)
 
-Basicamente, o modelo (gerenciado pelo seu aplicativo APS, Autodesk Docs ou outro repositório em nuvem da Autodesk, conforme detalhado [aqui](https://forge.autodesk.com/en/docs/data/v2/developers_guide/basics/)) será renderizado no navegador com o Viewer, e a este adicionado [sprites](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/sprites/) que representarão sensores integrados com a cena do modelo, de modo que tenha-se os [mapas de calor](https://aps.autodesk.com/en/docs/dataviz/v1/developers_guide/examples/heatmap/) caracterizando os dados desses sensores de acordo com o gradiente de cores definido.
+<!-- ![sample queries](./assets/images/samplequery.gif) -->
 
-Para desenvolver essa solução há etapas cruciais, como a definição do modelo base, a base de dados dos sensores, exemplo base e customização.
-É recomendável experiência com desenvolvimento Web para explorar os maiores benefícios do presente tutorial.
-As ferramentas utilizadas e recomendadas para reproduzir as próximas etapas são: (i) o [Visual Studio Code](https://code.visualstudio.com/) como ambiente de desenvolvimento; (ii) e o [Node js](https://nodejs.org/en/), para desenvolver o exemplo. Tendo em vista a simplificação de algumas etapas, será adotada a [extensão do VS Code para APS(anteriormente Forge)](https://marketplace.visualstudio.com/items?itemName=petrbroz.vscode-forge-tools).
+Don't worry if you're not a full-stack web developer. You won't need that level of expertise to follow up on this tutorial (although it's required to connect with one to build your own app leveraging our APIs).
 
-Para aqueles que estão dando os primeiro passos com a Autodesk Platform Services, sugere-se sempre este [tutorial](http://aps.autodesk.com/tutorials) como caminho introdutório!
+As long as you are familiar with Revit designs and Autodesk Construction Cloud data structures, and curious about new technologies, you're in good shape to go through the contents shared here.
 
-O tutorial é dividido em 3 macro etapas:
+> _From now on, we'll be referring to **Autodesk Construction Cloud** as **ACC** for simplicity_
 
-2. [Requisitos]({{ site.baseurl }}/requisites/home/)
+This tutorial is divided into 3 main sections:
 
-3. [Clonando o app base]({{ site.baseurl }}/cloning/home/)
+1. [Requisites and GraphQL]({{ site.baseurl }}/prerequisites/home/)
 
-4. [Adaptando aos seus dados]({{ site.baseurl }}/adapting/home/)
+2. [Explorer and First Queries]({{ site.baseurl }}/explorer/home/)
+
+3. [Connecting with Viewer and Advanced Queries]({{ site.baseurl }}/connection/home/)
+
+We'll start ensuring that everyone addresses the prerequisites.
+
+[Next Step - Prerequisites and GraphQL]({{ site.baseurl }}/prerequisites/home/){: .btn}
