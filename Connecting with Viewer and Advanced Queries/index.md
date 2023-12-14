@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Connecting with Viewer and Advanced Queries
-nav_order: 3
+nav_order: 4
 has_children: false
 permalink: /connection/home/
 ---
