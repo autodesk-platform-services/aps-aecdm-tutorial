@@ -264,7 +264,7 @@ With the Variables below:
 
 ```js
 {
-  "designId": "YOUR DESIGN ID GOES HERE!",
+  "projectId": "YOUR PROJECT ID GOES HERE!",
   "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance"
 }
 ```
