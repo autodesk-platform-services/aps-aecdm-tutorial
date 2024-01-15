@@ -195,7 +195,7 @@ If you notice the response for one specific design, you'll see that it contains 
 
 Before moving to the next query, we need to load the `Snowdon Towers Sample Facades` in Explorer's Viewer.
 
-This is quite simple to achieve ;), you just need to copy and paste the version id in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
+This is quite simple to achieve ;), you just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeRepresentations) in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
 
 ![Load Viewer](../assets/images/loadviewer.gif)
 
