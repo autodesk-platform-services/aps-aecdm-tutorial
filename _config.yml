@@ -2,12 +2,12 @@ title: AEC Data Model Tutorial
 remote_theme: just-the-docs/just-the-docs
 email: joao.martins@autodesk.com
 heading_anchors: true
-footer_content: '<a href="https://github.com/JoaoMartins-callmeJohn/aecdm-api-tutorial/issues">Report an issue</a> with this page.'
+footer_content: '<a href="https://github.com/autodesk-platform-services/aps-aecdm-tutorial/issues">Report an issue</a> with this page.'
 description: >- # this means to ignore newlines until "baseurl:"
   This documentation will showcase the new AEC Data Model API.
 logo: "/assets/images/apslogo.png"
 baseurl: "aecdm-api-tutorial" # the subpath of your site, e.g. /blog
-url: "https://joaomartins-callmejohn.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://autodesk-platform-services.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 # permalink: none
 
