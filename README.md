@@ -6,6 +6,6 @@ It is based on [just the docs](https://just-the-docs.com) for documentation and 
 
 This tutorial leverages mostly the [Explorer's](https://aecdatamodel-explorer.autodesk.io) in all the steps.
 
-You can check the tutorial at https://joaomartins-callmejohn.github.io/aecdm-api-tutorial/
+You can check the tutorial at [https://autodesk-platform-services.github.io/aps-aecdm-tutorial/](https://autodesk-platform-services.github.io/aps-aecdm-tutorial/)
 
 Give it a try and let us know your opinion ;
