@@ -10,13 +10,15 @@ permalink: /prerequisites/home/
 
 Before jumping into action, you need to fulfill a few (but essential) prerequisites to follow along with this tutorial. **The steps need to be fulfilled in sequence for you to be able to follow this tutorial (only move to the next step after completing the previous one)**:
 
-1. Firstly, you will need an ACC account from the **AMER region**. The AEC Data Model API works based on Revit 2024 designs hosted on ACC hubs in the **AMER region** , so it is **required**. Although the scope of this tutorial is just reading data, we recommend that you create a separate project for testing the AEC Data Model API. If you don't have access to an **AMER ACC hub**, you can find options for getting a test account on [this blog](https://fieldofviewblog.wordpress.com/2017/08/31/bim-360-acc-account-for-development/). **Make sure you now have access to an ACC hub in the AMER region and only then proceed to the next prerequisite.**
+1. Firstly, you will need an ACC account from the **AMER or EMEA region**. The AEC Data Model API works based on Revit 2024+ designs hosted on ACC hubs in the **AMER and EMEA regions** , so it is **required**. Although the scope of this tutorial is just reading data, we recommend that you create a separate project for testing the AEC Data Model API. If you don't have access to an **AMER or EMEA ACC hub**, you can find options for getting a test account on [this blog](https://fieldofviewblog.wordpress.com/2017/08/31/bim-360-acc-account-for-development/).
 
-2. Once you get access to your hub, you'll need to enable it to generate AEC Designs from uploaded Revit 2024 files. To make this possible, **the account owner** of the ACC hub you're interested in using needs to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta). **We recommend doing this as soon as possible as this process might take up to three business days and after that, there are still prerequisites to be fulfilled before the bootcamp. So, please reach out to your ACC hub owner and ask him/her to [join the AEC Data Model API beta](https://feedback.autodesk.com/key/AECDataModelPublicBeta) as soon as possible!** After your ACC account gets enabled, every time you upload a new Revit 2024 file to your hub, it will generate one equivalent AEC Design. This only works against files uploaded **after your hub is allow listed**. Please, reach out to us in case it takes longer than expected. The process works just like in the diagram below:
+**Make sure you now have access to an ACC hub in the AMER or EMEA region and only then proceed to the next prerequisite.**
+
+2. Once you get access to your hub, you'll need to enable it to generate AEC Designs from uploaded Revit 2024+ files. To make this possible, one **account admin** of the ACC hub you're interested in using needs to [Click the Activate button to enable the AEC Data Model capabilities for your account](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/onboarding/). **We recommend doing this as soon as possible. There are still prerequisites to be fulfilled before the bootcamp. So, please reach out to your ACC hub admin and ask him/her to [Click the Activate button](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/onboarding/).** After your ACC account gets enabled, every time you upload a new Revit 2024+ file to your hub, it will generate one equivalent ElementGroup. This only works against files uploaded **after your hub is enabled**. Please, reach out to us in case you have any trouble with that. The process works just like in the diagram below:
 
    ![translation diagram](../assets/images/translationdiagram.png)
 
-3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=f9b940e2-12b2-4617-9a87-630451008498). You just need to download the .zip file, unzip it, and then upload the Revit files to your account **at least one week before the tutorial date**. We are asking this because the translation process can take some time and if everyone uploads all their files without enough time, some designs may not get translated in time. If your account is allow listed, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=f9b940e2-12b2-4617-9a87-630451008498), and upload them to a known project in your ACC AMER account** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
+3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b). You just need to download the .zip file, unzip it, and then upload the Revit files to your account. If your account is active, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b), and upload them to a known project in your ACC hub** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
 
 4. You'll also need to [provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll be using in this tutorial.
 
@@ -41,15 +43,17 @@ With the AEC Data Model GraphQL endpoint, the query looks like this:
 
 ```js
 query {
-  aecDesignByVersionNumber(designId: "YWVjZH5...EpfSHZ3", versionNumber:1) {
+  elementGroupByVersionNumber(elementGroupId: "YWVjZH5...EpfSHZ3", versionNumber:1) {
     elements(filter:{query:"'property.name.External ID'==41434aa5-...-0018527b"}){
       results{
         properties(filter:{names:["Length"]}){
           results{
             name
             value
-            propertyDefinition{
-              units
+            definition{
+              units{
+                name
+              }
             }
           }
         }
@@ -64,7 +68,7 @@ And the response for this query will look like this
 ```js
 {
   "data": {
-    "aecDesignByVersionNumber": {
+    "elementGroupByVersionNumber": {
       "elements": {
         "results": [
           {
@@ -73,8 +77,10 @@ And the response for this query will look like this
                 {
                   "name": "Length",
                   "value": 11.000000000000002,
-                  "propertyDefinition": {
-                    "units": "Meters"
+                  "definition": {
+                    "units": {
+                      "name": "Meters"
+                    }
                   }
                 }
               ]
@@ -87,8 +93,8 @@ And the response for this query will look like this
 }
 ```
 
-Note that in this case we specified that we wanted to obtain the AEC Design with id `YWVjZH5...EpfSHZ3` from version `1`.
-From this design, we specified the element with `External Id` equal to `41434aa5-...-0018527b`, and from this element, we retrieved the property with a name equal to `length` including its **value**, **name**, and **unit**.
+Note that in this case we specified that we wanted to obtain the ElementGroup with id `YWVjZH5...EpfSHZ3` from version `1`.
+From this elementgroup, we specified the element with `External Id` equal to `41434aa5-...-0018527b`, and from this element, we retrieved the property with a name equal to `length` including its **value**, **name**, and **unit**.
 
 With REST API we would need additional requests, and wouldn't be possible to specify with this precision the data in the response.
 

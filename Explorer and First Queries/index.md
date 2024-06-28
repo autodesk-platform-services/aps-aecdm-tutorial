@@ -28,8 +28,8 @@ As described at [graphql.org](https://graphql.org/learn/schema/):
 
 Our API has a schema suitable to address the common data from the AEC industry. It's composed of the 5 constructs described below:
 
-- **Design**: A Design is a part of an AEC project that contains elements. Note that “Model” is sometimes used interchangeably with “Design”.
-- **Elements**: An Element is a building block of AEC design data. It represents an individual piece of an AEC design such as a wall, window, or door without enforcing a rigid definition. The absence of a rigid definition allows the Element to be flexible to adapt to the different requirements of an AEC design, now and in the future. The data contained in an Element gives it context by using Classification, Property, and Property Definition.
+- **ElementGroup**: A ElementGroup is a part of an AEC project that contains elements. Note that “Model” or “Design” is sometimes used interchangeably with “ElementGroup”.
+- **Elements**: An Element is a building block of elementGroup data. It represents an individual piece of an elementGroup such as a wall, window, or door without enforcing a rigid definition. The absence of a rigid definition allows the Element to be flexible to adapt to the different requirements of an elementGroup, now and in the future. The data contained in an Element gives it context by using Classification, Property, and Property Definition.
 - **Reference Property**: A reference property describes the relationship between elements.
 - **Property**: A Property is a well-defined granular piece of data that describes the Element. For example: Revit parameters and their values like area, volume, length, etc.
 - **Property Definition**: A Property Definition provides detailed information about a Property. It contains metadata that gives context to the Property. For example: Unit, type, etc.
@@ -49,19 +49,9 @@ The first query we used in the previous section returned to us a list of hubs. A
 > There's also another great tool to explore GraphQL API's schemas:
 > The [GraphQL Voyager](https://graphql-kit.com/graphql-voyager/)
 
-To try this tool, you just need to go through the three steps below:
+To try this tool, you just need to click the `Voyager` button in the explorer and it will open a new tab with the schema compatible with the AEC Data Model API.
 
-- Go to the Voyager page, click on change the schema, and copy the introspection query
-
-![Copy the introspection](../assets/images/copyintrospection.gif)
-
-- Paste and run the query in the AEC Data Model Explorer
-
-![Run the introspection](../assets/images/runintrospection.gif)
-
-- Copy the response, paste it back in the Voyager app and click in the `DISPLAY` button
-
-![Copy the response](../assets/images/copyresponse.gif)
+![Voyager](../assets/images/voyager.gif)
 
 With that you will be able to inspect all the available queries and constructs from AEC Data Model API.
 
@@ -94,7 +84,7 @@ Now make sure you can see the hub you used to join the AEC Data Model beta liste
 This tutorial will move to the next steps using the hub named `AEC DM Developer Advocacy Support`.
 In the next query, you'll need to use your hub id as input.
 
-> _This id is the same one used by other APS APIs (ACC and Data Management) to point to hubs._
+> _This id is different from the one used by other APS APIs (ACC and Data Management) to point to hubs._
 
 ### Step 2 - Listing the projects
 
@@ -104,42 +94,13 @@ Go ahead and copy the id of the hub you're using, move to the `GetProjects` pane
 
 ![GET projects](../assets/images/getprojects.gif)
 
-Now you'll need to find the project that hosts your Revit 2024 designs for this tutorial.
+Now you'll need to find the project that hosts your Revit 2024+ designs for this tutorial.
 
 This tutorial uses the project `AEC DM Bootcamp Project`, which is already visible on the first page of the response.
 
-The GetProjects query available in the explorer, as is, requires you to paste the `hub id` as a string argument, but you can also asign that using the Variables.
+In case your hub has many projects, the one you need to use might be missing from the first page (or even hard to find).
 
-Using Variables instead, the query would be just like the one below:
-
-```js
-query GetProjects ($hubId:ID!) {
-  projects(hubId: $hubId) {
-    pagination {
-      cursor
-    }
-    results {
-      id
-      name
-      alternativeRepresentations{
-        externalProjectId
-      }
-    }
-  }
-}
-```
-
-And in Variables space, the id of the hub:
-
-```js
-{
-  "hubId": "YOUR HUB ID HERE!"
-}
-```
-
-This way is better to address variables as they can be assigned multiple time easier at any place in the query, and we don't need to change any value in the query to point to a different hub.
-
-In case your hub has many projects making the one you need to use missing from the first page (or even hard to find), there's a way to filter the response.
+There's a way to filter the response.
 
 For that you can filter the projects by name, passing the name of your project like the gif below:
 
@@ -148,62 +109,60 @@ For that you can filter the projects by name, passing the name of your project l
 For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
 
 ```js
-query GetProjects ($hubId:ID!, $projectName:String!) {
-  projects(hubId: $hubId, filter:{name:$projectName}) {
-    pagination {
-      cursor
-    }
-    results {
-      id
-      name
-      alternativeRepresentations{
-        externalProjectId
+# Task 2 – Pick Projects
+query GetProjects($hubId: ID!) {
+    projects(hubId: $hubId, filter:{name:"Your Project Name Here!"}) {
+      pagination {
+        cursor
+      }
+      results {
+        id
+        name
+        alternativeIdentifiers{
+          dataManagementAPIProjectId
+        }
       }
     }
-  }
 }
 ```
 
 ```js
 {
-  "hubId": "YOUR HUB ID HERE!",
-  "projectName": "YOUR PROJECT NAME HERE!"
+  "hubId": "YOUR HUB ID HERE!"
 }
 ```
 
-The next query requires a project id, and AEC Data Model API works with its unique value for the project id. That's why it exposes the usual project id inside the `alternativeRepresentations` field.
+The next query requires a project id, and AEC Data Model API works with its unique value for the project id. That's why it exposes the usual project id inside the `alternativeIdentifiers` field.
 We are not going to use the alternative representation for the projects in this tutorial but is always good to know how to retrieve it. You'll need it if you want to connect with ACC APIs or Data Management APIs, for instance.
 
-### Step 3 - Listing Designs
+### Step 3 - Listing ElementGroups
 
 Usually inside a project, we have a complete structure of folders separating files according to project phase, disciplines, teams, etc...
 You might be used to traverse this folder structure to reach your items level, but that isn't necessary when we use AEC Data Model API.
 
-There are queries that list designs from a project and even from a hub.
+There are queries that list elementgroups from a project and even from a hub.
 Obviously, by limiting the container the response is more precise, avoiding the need to go through multiple pages or filtering.
 
-In this step we'll focus on listing all the designs available in one specific project, using the desired project id.
-For that, we just need to copy the project id from the previous step response, move to the `GetDesignsByProject` pane, and paste the project id into the `GetDesignsByProject` query. Just like in the gif below:
+In this step we'll focus on listing all the elementGroups available in one specific project, using the desired project id.
+For that, we just need to copy the project id from the previous step response, move to the `GetElementGroupsByProject` pane, and paste the project id into the `GetElementGroupsByProject` variables. Just like in the gif below:
 
-![GET Designs](../assets/images/getdesigns.gif)
+![GET ElementGroups](../assets/images/getdesigns.gif)
 
-The response for this request will only list **AEC Designs** generated from the Revit 2024 files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
+The response for this request will only list **ElementGroups** generated from the Revit 2024+ files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
 
-> _Feeling comfortable with GraphQL already? Why don't you try changing this query to use variables insted of "hardcoded" arguments? ;)_
-
-If you notice the response for one specific design, you'll see that it contains the `alternativeRepresentations` field. In this case, we are retrieving both **item Id** and **version Id**. We'll use the **version Id** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
+If you notice the response for one specific elementgroup, you'll see that it contains the `alternativeIdentifiers` field. In this case, we are retrieving both **fileUrn** and **fileVersionUrn**. We'll use the **fileVersionUrn** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
 
 Before moving to the next query, we need to load the `Snowdon Towers Sample Facades` in Explorer's Viewer.
 
-This is quite simple to achieve ;), you just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeRepresentations) in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
+This is quite simple to achieve ;), you just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeIdentifiers) in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
 
 ![Load Viewer](../assets/images/loadviewer.gif)
 
 ### Step 4 - Listing Elements
 
-Now we can explore the components from our designs. In the last query of this section, we'll retrieve the elements from specific categories through the supported filters.
+Now we can explore the components from our elementgroups. In the last query of this section, we'll retrieve the elements from specific categories through the supported filters.
 
-Copy the design id from the `Snowdon Towers Sample Facades` available in the previous response and pass it to the `GetElementsFromCategory` query, just like in the gif below.
+Copy the elementGroup id from the `Snowdon Towers Sample Facades` available in the previous response and pass it to the `GetElementsFromCategory` query, just like in the gif below.
 
 ![Get Elements](../assets/images/getelements.gif)
 
@@ -226,9 +185,9 @@ By default, the **Elements** query is limited to listing only the first 50 eleme
 | hubs          | Contains a list of hubs returned in response to a query. A hub is a container of projects, shared resources, and users with a common context. | 100           | 200           |
 | projects      | Contains a list of projects returned in response to a query.                                                                                  | 100           | 200           |
 | folders       | Contains a list of hubs returned in response to a query. A hub is a container of projects, shared resources, and users with a common context. | 100           | 200           |
-| aecDesigns    | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
+| Elementgroups | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
 | version       | Contains a list of object representing versions of drawings, typically returned in response to a query.                                       | 50            | 100           |
-| elements      | Contains a list of object representing elements of a specific aecdesign.                                                                      | 50            | 500           |
+| elements      | Contains a list of object representing elements of a specific Elementgroup.                                                                   | 50            | 500           |
 | properties    | Contains a list of object representing properties of a specific element.                                                                      | 100           | 500           |
 
 So let's improve our response by tweaking it a little bit.
@@ -239,28 +198,38 @@ We can change the default limit, returning to us the first 100 elements instead 
 The query will be just like the one below:
 
 ```js
-query GetElementsFromCategory {
-  elements(designId: "YOUR DESIGN ID HERE!",
-  filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
-  pagination:{limit:500}) {
-    pagination {
-      cursor
-    }
-    results {
-      id
-      name
-      properties {
-        results {
-          name
-          value
+query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
+    elementsByElementGroup(elementGroupId: $elementGroupId, filter: {query:$propertyFilter}, pagination:{limit:500}) {
+      pagination {
+        cursor
+      }
+      results {
+        id
+        name
+        properties {
+          results {
+            name
+            value
+            definition {
+              units{
+                name
+              }
+            }
+          }
         }
       }
     }
-  }
 }
 ```
 
-> _Once more, feel free to change this query to use variables insted of "hardcoded" arguments? ;)_
+Ande the Variables just like the one below:
+
+```js
+{
+  "elementGroupId":"YOUR ELEMENTGROUP ID HERE",
+  "propertyFilter":"property.name.category==Walls and 'property.name.Element Context'==Instance"
+}
+```
 
 Now imagine that in your workflow, the resulting elements are referred simply as Walls as they are from the Walls category.
 
@@ -269,24 +238,27 @@ Using **Aliases** you can change the elements field name to anything that you ne
 Using the query below, instead, you'll retrieve the elements named as Walls:
 
 ```js
-query GetElementsFromCategory {
-  Walls: elements(designId: "YOUR DESIGN ID HERE!",
-  filter: {query:"property.name.category==Walls and 'property.name.Element Context'==Instance"},
-  pagination:{limit:500}) {
-    pagination {
-      cursor
-    }
-    results {
-      id
-      name
-      properties {
-        results {
-          name
-          value
+query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
+    Walls: elementsByElementGroup(elementGroupId: $elementGroupId, filter: {query:$propertyFilter}, pagination:{limit:500}) {
+      pagination {
+        cursor
+      }
+      results {
+        id
+        name
+        properties {
+          results {
+            name
+            value
+            definition {
+              units{
+                name
+              }
+            }
+          }
         }
       }
     }
-  }
 }
 ```
 
