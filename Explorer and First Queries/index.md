@@ -176,7 +176,7 @@ filter: {
 
 Retrieves only elements from the **Walls** category.
 
-By default, the **Elements** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
+By default, the **elementsByElementGroup** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
 
 > _Refer top the table below (also available in the docs)_
 
@@ -262,7 +262,10 @@ query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
 }
 ```
 
-And with that, we covered the first queries with the AEC Data Model API.
+And with that, we covered the first queries with the AEC Data Model API. Before moving to the advanced queries, there's one last important topic that we need to address: **Limits**.
+
+The AEC Data Model API has the limitation mentioned before applies for each query, but that's not the only limit in place.
+
 In the next step, we'll understand how this connection with the viewer works and explore more complex queries.
 
 [Next Step - Connecting with Viewer and Advanced Queries](../../connection/home/){: .btn}

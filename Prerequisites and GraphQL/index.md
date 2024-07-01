@@ -111,6 +111,10 @@ For that, you just need to go to the explorer app at `https://aecdatamodel-explo
 
 ![First Query](../assets/images/firstquery.gif)
 
+> For queries against data hosted in ACC hubs from regions other than the US, such as EMEA, you need to add the appropriate region header. If you don’t specify a value in the header for other regions, the US region will be used as it is the default. For more information about how to specify the custom header value, refer to the GraphQL Endpoint topic.
+
+![region header](../assets/images/region_header.png)
+
 If you don't see your ACC hub listed, please double check step 3.
 Once you see your hub, you can move on to the next step.
 
