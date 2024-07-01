@@ -23,7 +23,7 @@ To understand the process, let's analyze the diagram below:
 2. In case there's a design rendered in viewer, a method gets triggered when the response is received, just like in the snippet below:
 
 ```js
-return fetch("https://developer.api.autodesk.com/aecdatamodel/graphql", {
+return fetch("https://developer.api.autodesk.com/aec/graphql", {
   method: "post",
   headers: {
     "Content-Type": "application/json",
@@ -39,13 +39,13 @@ return fetch("https://developer.api.autodesk.com/aecdatamodel/graphql", {
   //Here we check if Viewer is active
   if (!!globalViewer && viewerToggle.checked) {
     //If so
-    globalViewer.getExtension("AIMFilterExtension").filterModel();
+    globalViewer.getExtension("AECDMFilterExtension").filterModel();
   }
   return queryResponse;
 });
 ```
 
-3. The elements are extracted from the AEC Data Model API response. Apart from the id we can see from the response, each element has a persistent id that remains the same in Revit, Viewer, and AEC Data Model. For those familiar with Revit, this is the [UniqueId](https://www.revitapidocs.com/2024/f9a9cb77-6913-6d41-ecf5-4398a24e8ff8.htm). In the response, this id is available in the **External Id** property. We just need to retrieve every value for this property from the response, and the explorer does that using regular expressions through the snippet below:
+3. The elements are extracted from the AEC Data Model API response. Apart from the id we can see from the response, each element has a persistent id that remains the same in Revit, Viewer, and AEC Data Model. For those familiar with Revit, this is the [UniqueId](https://www.revitapidocs.com/2024/f9a9cb77-6913-6d41-ecf5-4398a24e8ff8.htm). In the response, this id is available in the **External ID** property. We just need to retrieve every value for this property from the response, and the explorer does that using regular expressions through the snippet below:
 
 ```js
 async retrieveOccurences(jsonResponse) {
@@ -105,7 +105,7 @@ The AEC Data Model API has great filtering capabilities, and we'll explore that 
 
 The filters available in AEC Data Model API enable us to filter our queries based on our design metadata, limiting the results to match precisely what we're looking for.
 
-> For future reference, check our documentation on filtering [here](https://aps.autodesk.com/en/docs/aecdatamodel-beta/v1/developers_guide/API%20Essentials/adv-filtering/) ;)
+> For future reference, check our documentation on filtering [here](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/filtering/) ;)
 
 Suppose you need to count the total length of `Ducts` needed in your project.
 To achieve this, you can retrieve the elements (instances) from the `Ducts` category in the **Snowdon Towers Sample HVAC.rvt** design and limit the response to only list their sizes and lengths.
@@ -113,9 +113,9 @@ To achieve this, you can retrieve the elements (instances) from the `Ducts` cate
 The achieve this, you can use the query below:
 
 ```js
-query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
-  elements(
-    designId: $designId
+query GetDuctsFromElementGroup($elementGroupId: ID!, $elementsFilter: String!) {
+  elementsByElementGroup(
+    elementGroupId: $elementGroupId
     filter: {query: $elementsFilter}
     pagination: {limit: 100}
   ) {
@@ -128,8 +128,10 @@ query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
         results {
           name
           value
-          propertyDefinition {
-            units
+          definition {
+            units{
+              name
+            }
           }
         }
       }
@@ -142,7 +144,7 @@ With the Variables below:
 
 ```js
 {
-  "designId": "YOUR DESIGN ID GOES HERE!",
+  "elementGroupId": "YOUR DESIGN ID GOES HERE!",
   "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance"
 }
 ```
@@ -152,9 +154,9 @@ Your response should begin with a cursor, meaning that you'll need to go through
 We can point to the next page by simply adding the cursor in our query, like the snippet below:
 
 ```js
-query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
+query GetDuctsFromElementGroup($elementGroupId: ID!, $elementsFilter: String!) {
   elements(
-    designId: $designId
+    elementGroupId: $elementGroupId
     filter: {query: $elementsFilter}
     pagination: {limit: 100, cursor:"YOUR CURSOR GOES HERE!"}
   ) {
@@ -167,8 +169,10 @@ query GetDuctsFromDesign($designId: ID!, $elementsFilter: String!) {
         results {
           name
           value
-          propertyDefinition {
-            units
+          definition {
+            units{
+              name
+            }
           }
         }
       }
@@ -181,13 +185,13 @@ The variables remain the same.
 
 ### Versioning
 
-If you need to retrieve the elements from a specific version, that's also possible with the `elementsByDesignAtVersion` query.
+If you need to retrieve the elements from a specific version, that's also possible with the `elementsByElementGroupAtVersion` query.
 The query would be just like the snippet below:
 
 ```js
-query GetDuctsFromDesignAtVersion($designId: ID!, $elementsFilter: String!, $versionNumber: Int!) {
-  elementsByDesignAtVersion(
-    designId: $designId
+query GetDuctsFromElementGroupAtVersion($elementGroupId: ID!, $elementsFilter: String!, $versionNumber: Int!) {
+  elementsByElementGroupAtVersion(
+    elementGroupId: $elementGroupId
     filter: {query: $elementsFilter}
     versionNumber:$versionNumber
     pagination: {limit: 100}
@@ -201,8 +205,10 @@ query GetDuctsFromDesignAtVersion($designId: ID!, $elementsFilter: String!, $ver
         results {
           name
           value
-          propertyDefinition {
-            units
+          definition {
+            units{
+              name
+            }
           }
         }
       }
@@ -215,7 +221,7 @@ With the Variables below:
 
 ```js
 {
-  "designId": "YOUR DESIGN ID GOES HERE!",
+  "elementGroupId": "YOUR ELEMENT GROUP ID GOES HERE!",
   "elementsFilter": "property.name.category==Ducts and 'property.name.Element Context'==Instance",
   "versionNumber": <<YOUR VERSION NUMBER GOES HERE>>
 }
@@ -250,8 +256,10 @@ query GetDuctsFromProject($projectId: ID!, $elementsFilter: String!) {
         results {
           name
           value
-          propertyDefinition {
-            units
+          definition {
+            units{
+              name
+            }
           }
         }
       }
@@ -287,8 +295,10 @@ query GetDuctsFromProject($projectId: ID!, $elementsFilter: String!) {
         results {
           name
           value
-          propertyDefinition {
-            units
+          definition {
+            units{
+              name
+            }
           }
         }
       }
@@ -313,14 +323,14 @@ query GetDuctsByLevelName($projectId: ID!, $elementsFilter: String!) {
   elementsByProject(
     projectId: $projectId
     filter: {query: $elementsFilter}
-    pagination: {limit: 100}
+    pagination: {limit: 50}
   ) {
     pagination {
       cursor
     }
     results {
       name
-      design{
+      elementGroup{
         name
       }
       referencedBy(name:"Reference Level", filter:{query:"property.name.category==Ducts"}, pagination:{limit:100}){
@@ -334,8 +344,10 @@ query GetDuctsByLevelName($projectId: ID!, $elementsFilter: String!) {
             results{
               name
               value
-              propertyDefinition{
-                units
+              definition {
+                units{
+                  name
+                }
               }
             }
           }
