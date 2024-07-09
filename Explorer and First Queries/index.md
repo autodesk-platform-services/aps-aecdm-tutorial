@@ -14,7 +14,7 @@ In this section, we'll introduce you to the interface that will help you explore
 
 The explorer's UI was built to be simple and intuitive. We'll use it mostly to perform our queries by passing the payload and checking the response, just like in the image below:
 
-![Explorer UI](./assets/images/explorerui.png)
+![Explorer UI](../../assets/images/explorerui.png)
 
 > _The explorer is built on top of the [graphiql](https://github.com/graphql/graphiql) project! If you want additional details on this project, feel free to check its documentation ;)_
 
