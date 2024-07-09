@@ -16,7 +16,7 @@ Before jumping into action, you need to fulfill a few (but essential) prerequisi
 
 2. Once you get access to your hub, you'll need to enable it to generate AEC Designs from uploaded Revit 2024+ files. To make this possible, one **account admin** of the ACC hub you're interested in using needs to [Click the Activate button to enable the AEC Data Model capabilities for your account](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/onboarding/). **We recommend doing this as soon as possible. There are still prerequisites to be fulfilled before the bootcamp. So, please reach out to your ACC hub admin and ask him/her to [Click the Activate button](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/onboarding/).** After your ACC account gets enabled, every time you upload a new Revit 2024+ file to your hub, it will generate one equivalent ElementGroup. This only works against files uploaded **after your hub is enabled**. Please, reach out to us in case you have any trouble with that. The process works just like in the diagram below:
 
-   ![translation diagram](../assets/images/translationdiagram.png)
+   ![translation diagram](../../assets/images/translationdiagram.png)
 
 3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b). You just need to download the .zip file, unzip it, and then upload the Revit files to your account. If your account is active, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b), and upload them to a known project in your ACC hub** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
 
@@ -109,11 +109,11 @@ Before moving to the next step, let's run our very first query.
 
 For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, log in, and run the query from the very first panel (GetHubs), just like in the image below:
 
-![First Query](../assets/images/firstquery.gif)
+![First Query](../../assets/images/firstquery.gif)
 
 > For queries against data hosted in ACC hubs from regions other than the US, such as EMEA, you need to add the appropriate region header. If you don’t specify a value in the header for other regions, the US region will be used as it is the default. For more information about how to specify the custom header value, refer to the GraphQL Endpoint topic.
 
-![region header](../assets/images/region_header.png)
+![region header](../../assets/images/region_header.png)
 
 If you don't see your ACC hub listed, please double check step 3.
 Once you see your hub, you can move on to the next step.

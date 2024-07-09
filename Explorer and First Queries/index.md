@@ -40,7 +40,7 @@ Now let's use the explorer to view our schema.
 
 Log in with your Autodesk account, then click on the Docs button and scroll down to access the queries available in the AEC Data Model's schema.
 
-![Schema through explorer](../assets/images/schema.gif)
+![Schema through explorer](../../assets/images/schema.gif)
 
 The first query we used in the previous section returned to us a list of hubs. According to this documentation we could, for instance, use a filter to retrieve only the hubs matching certain conditions. Exploring the schema gives us a better idea about the capabilities of the API. If you scroll down you'll see a list with all the queries available including the parameters that can be passed to compose the responses.
 
@@ -51,7 +51,7 @@ The first query we used in the previous section returned to us a list of hubs. A
 
 To try this tool, you just need to click the `Voyager` button in the explorer and it will open a new tab with the schema compatible with the AEC Data Model API.
 
-![Voyager](../assets/images/voyager.gif)
+![Voyager](../../assets/images/voyager.gif)
 
 With that you will be able to inspect all the available queries and constructs from AEC Data Model API.
 
@@ -69,7 +69,7 @@ Inside a project, there are multiple folders.
 Inside a folder, there can be other folders or items.
 Lastly, an item can have multiple versions.
 
-![ACC hierarchy](../assets/images/hierarchy.png)
+![ACC hierarchy](../../assets/images/hierarchy.png)
 
 Let's traverse this structure through our queries in 4 steps:
 
@@ -77,7 +77,7 @@ Let's traverse this structure through our queries in 4 steps:
 
 The query to retrieve the hubs is quite simple and it is available in the first pane of the explorer. To list the hubs available you just need to click in the first panel of the explorer and then run the query, like the gif below:
 
-![GET hubs](../assets/images/gethubs.gif)
+![GET hubs](../../assets/images/gethubs.gif)
 
 Now make sure you can see the hub you used to join the AEC Data Model beta listed in the response and move to the next query.
 
@@ -92,7 +92,7 @@ Following the hierarchy, we're going to list all of the projects available insid
 
 Go ahead and copy the id of the hub you're using, move to the `GetProjects` pane, and paste the id in the proper field, just like in the gif below:
 
-![GET projects](../assets/images/getprojects.gif)
+![GET projects](../../assets/images/getprojects.gif)
 
 Now you'll need to find the project that hosts your Revit 2024+ designs for this tutorial.
 
@@ -104,7 +104,7 @@ There's a way to filter the response.
 
 For that you can filter the projects by name, passing the name of your project like the gif below:
 
-![GET projects](../assets/images/getprojectsfilter.gif)
+![GET projects](../../assets/images/getprojectsfilter.gif)
 
 For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
 
@@ -145,7 +145,7 @@ Obviously, by limiting the container the response is more precise, avoiding the 
 In this step we'll focus on listing all the elementGroups available in one specific project, using the desired project id.
 For that, we just need to copy the project id from the previous step response, move to the `GetElementGroupsByProject` pane, and paste the project id into the `GetElementGroupsByProject` variables. Just like in the gif below:
 
-![GET ElementGroups](../assets/images/getdesigns.gif)
+![GET ElementGroups](../../assets/images/getdesigns.gif)
 
 The response for this request will only list **ElementGroups** generated from the Revit 2024+ files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
 
@@ -155,7 +155,7 @@ Before moving to the next query, we need to load the `Snowdon Towers Sample Faca
 
 This is quite simple to achieve ;), you just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeIdentifiers) in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
 
-![Load Viewer](../assets/images/loadviewer.gif)
+![Load Viewer](../../assets/images/loadviewer.gif)
 
 ### Step 4 - Listing Elements
 
@@ -163,7 +163,7 @@ Now we can explore the components from our elementgroups. In the last query of t
 
 Copy the elementGroup id from the `Snowdon Towers Sample Facades` available in the previous response and pass it to the `GetElementsFromCategory` query, just like in the gif below.
 
-![Get Elements](../assets/images/getelements.gif)
+![Get Elements](../../assets/images/getelements.gif)
 
 This query lists all the elements based on their **category**. The filter applied:
 
@@ -192,7 +192,7 @@ By default, the **elementsByElementGroup** query is limited to listing only the 
 So let's improve our response by tweaking it a little bit.
 We can change the default limit, returning to us the first 100 elements instead of only 50. We can also filter a bit more to return only the **instances**. In the current response, there are both types and instances. Since we're more interested in the latter for viewing, let's filter our response to only list instances.
 
-![Improving elements query](../assets/images/getelementsimproved.gif)
+![Improving elements query](../../assets/images/getelementsimproved.gif)
 
 The query will be just like the one below:
 
@@ -312,7 +312,7 @@ We can calculate the cost based on the previous table:
 
 So that will pass without any concern :).
 
-![Limit pass query](../assets/images/limitpassquery.gif)
+![Limit pass query](../../assets/images/limitpassquery.gif)
 
 The cursor present in the response let us know that there are more that 500 elements available in this elementGroup, and to cover all of them, we'll need to
 Now lets add a bit of complexity (and make the query a bit more useful ;)).
@@ -351,7 +351,7 @@ After adding the properties query we have the new cost below:
 
 > **Total query cost = 10 + (500 x 1) + 2 + (500 x 1) = 1012 points**
 
-![Limit fail query](../assets/images/limitfailquery.gif)
+![Limit fail query](../../assets/images/limitfailquery.gif)
 
 We can address that by modifying the limits in our query to reduce its point cost.
 
@@ -369,7 +369,7 @@ Let's make this sum lower than 1000 to ensure our success:
 
 After applying **n=493** our query is successful:
 
-![Limit controlled query](../assets/images/limitcontrolledquery.gif)
+![Limit controlled query](../../assets/images/limitcontrolledquery.gif)
 
 Now that we covered the point based limits, we can move on.
 In the next step, we'll understand how the connection between the AEC Data Model API resnponse and the Viewer works and explore more complex queries.
