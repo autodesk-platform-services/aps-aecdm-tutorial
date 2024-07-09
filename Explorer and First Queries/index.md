@@ -109,7 +109,6 @@ For that you can filter the projects by name, passing the name of your project l
 For simplicity, you can just copy and paste the query below if needed (replacing it with your project name and hub id) ;)
 
 ```js
-# Task 2 – Pick Projects
 query GetProjects($hubId: ID!) {
     projects(hubId: $hubId, filter:{name:"Your Project Name Here!"}) {
       pagination {
