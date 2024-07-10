@@ -149,6 +149,10 @@ For that, we just need to copy the project id from the previous step response, m
 
 The response for this request will only list **ElementGroups** generated from the Revit 2024+ files uploaded in your hub. Since we're using a small set of files, there's no need to go through pagination.
 
+> If you do need to address pagination, it's quite simple.
+> You'll just need to take note of the cursor obtained from one response and apply that as a pagination cursor in a subsequent request.
+> We'll share one example in the next query ;)
+
 If you notice the response for one specific elementgroup, you'll see that it contains the `alternativeIdentifiers` field. In this case, we are retrieving both **fileUrn** and **fileVersionUrn**. We'll use the **fileVersionUrn** to load the derivative for this design with Viewer while the `id` returned in the response is used in the next query.
 
 Before moving to the next query, we need to load the `Snowdon Towers Sample Facades` in Explorer's Viewer.
@@ -177,7 +181,7 @@ Retrieves only elements from the **Walls** category.
 
 By default, the **elementsByElementGroup** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
 
-> _Refer top the table below (also available in the docs)_
+> _Refer to the table below (also available in the docs_
 
 | Used by query | Description                                                                                                                                   | Default limit | Maximum limit |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
@@ -189,8 +193,39 @@ By default, the **elementsByElementGroup** query is limited to listing only the 
 | elements      | Contains a list of object representing elements of a specific Elementgroup.                                                                   | 50            | 500           |
 | properties    | Contains a list of object representing properties of a specific element.                                                                      | 100           | 500           |
 
-So let's improve our response by tweaking it a little bit.
-We can change the default limit, returning to us the first 100 elements instead of only 50. We can also filter a bit more to return only the **instances**. In the current response, there are both types and instances. Since we're more interested in the latter for viewing, let's filter our response to only list instances.
+To retrieve the remaining elements we need to pass the **cursor** obtained in the response to the same query as the cursor value of the pagination object.
+
+![Elements Pagination](../../assets/images/elementspagination.gif)
+
+The query adding the cursor will be like the one below:
+
+```js
+# Task 4 – Get Elements within an ElementGroup using a filter
+query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
+    elementsByElementGroup(pagination:{cursor:"YOUR CURSOR HERE!"}, elementGroupId: $elementGroupId, filter: {query:$propertyFilter}) {
+      pagination {
+        cursor
+      }
+      results {
+        id
+        name
+        properties {
+          results {
+            name
+            value
+            definition {
+              units{
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+}
+```
+
+We can also change the default limit, returning to us the first 100 elements instead of only 50. And we can even filter a bit more to return only the **instances**. In the current response, there are both types and instances. Since we're more interested in the latter for viewing, let's filter our response to only list instances.
 
 ![Improving elements query](../../assets/images/getelementsimproved.gif)
 
