@@ -265,7 +265,7 @@ And with that, we covered the first queries with the AEC Data Model API. Before 
 
 ## Limits in AEC Data Model API
 
-The AEC Data Model API has the limitation mentioned before applies for each query, but that's not the only limit in place.
+The AEC Data Model API limits mentioned before apply to each query, but that’s not the only limitation in place.
 
 The AEC Data Model API works with a point based system for limiting the queries. This is applied to individual queries and also to queries sent per minute from an APS app:
 
