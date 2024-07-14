@@ -1,12 +1,12 @@
 ---
 layout: page
-title: Connecting with Viewer and Advanced Queries
+title: How the explorer connects with the Viewer and advanced queries
 nav_order: 4
 has_children: false
 permalink: /connection/home/
 ---
 
-# Connecting with Viewer and Advanced Queries
+# How the explorer connects with the Viewer and advanced queries
 
 In this section, we'll understand how the explorer connects the elements retrieved from the response with the elements rendered by the Viewer.
 After this, we'll explore more complex workflows supported by the AEC Data Model API.

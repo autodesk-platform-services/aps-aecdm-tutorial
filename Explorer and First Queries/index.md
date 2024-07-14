@@ -79,6 +79,13 @@ The query to retrieve the hubs is quite simple and it is available in the first 
 
 ![GET hubs](../../assets/images/gethubs.gif)
 
+Both requests and responses used in this section contains the **pagination** field.
+As described in our documentation ([refer here](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/pagination/)):
+
+> The AEC Data Model API supports data retrieval through cursor-based pagination. It uses a unique identifier (the cursor) associated with each page to fetch the next set of results. This approach provides precise navigation through large datasets, ensuring efficient and responsive data retrieval.
+
+We'll address pagination in details in the step 4 ;)
+
 Now make sure you can see the hub you used to join the AEC Data Model beta listed in the response and move to the next query.
 
 This tutorial will move to the next steps using the hub named `AEC DM Developer Advocacy Support`.
@@ -298,6 +305,29 @@ query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
 
 And with that, we covered the first queries with the AEC Data Model API.
 
-In the next step, we'll understand how the connection between the AEC Data Model API resnponse and the Viewer works and explore more complex queries.
+Before moving to the last section, there's another topic worth addressing: Rate Limits.
 
-[Next Step - Connecting with Viewer and Advanced Queries](../../connection/home/){: .btn}
+As described in our docs ([refer here](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/ratelimit/)):
+
+> In order to maintain stability and ensure accessibility of our API to all users, we’ve implemented certain protection measures on incoming requests to our GraphQL API via Rate Limits.
+
+The AEC Data Model API has two limits in place:
+
+- An application request will have a default rate limit of 6000 points per minute. To request a higher rate limit, please contact support.
+- An individual request has a limit of 1000 points per query. Any queries exceeding this limit will be rejected.
+
+## How does the point cost work?
+
+- Generally, the point cost represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
+- Every requested field in the query (including nested fields) has a point cost associated with it based on its type.
+- Typically:
+  - If it's an object (so, possibly a data fetch), the cost is 1 + cost of nested fields
+  - If it's a page of results (so, possibly a data fetch), the cost is 1 + cost of nested fields of each result
+  - If it's a scalar or an enum, there is no cost (as these are most likely retrieved from "parent" data fetches)
+  - But there are exceptions. Selected fields may have their cost value customized.
+  - Currently, the point cost is calculated statically (by analyzing the GraphQL query). For paginated results, we assume the page to be of maximum possible length.
+  - In future, the point cost may be calculated dynamically (by analyzing the GraphQL response). For paginated results, we will know the exact size of the page.
+
+Now we can move to the next step. In the next section we'll understand how the connection between the AEC Data Model API resnponse and the Viewer works and explore more complex queries.
+
+[Next Step - How the explorer connects with the Viewer and advanced queries](../../connection/home/){: .btn}
