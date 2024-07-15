@@ -207,7 +207,6 @@ To retrieve the remaining elements we need to pass the **cursor** obtained in th
 The query adding the cursor will be like the one below:
 
 ```js
-# Task 4 – Get Elements within an ElementGroup using a filter
 query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
     elementsByElementGroup(pagination:{cursor:"YOUR CURSOR HERE!"}, elementGroupId: $elementGroupId, filter: {query:$propertyFilter}) {
       pagination {
