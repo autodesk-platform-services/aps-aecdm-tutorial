@@ -26,7 +26,7 @@ As described at [graphql.org](https://graphql.org/learn/schema/):
 
 > _"Every GraphQL service defines a set of types which completely describe the set of possible data you can query on that service. Then, when queries come in, they are validated and executed against that schema."_
 
-Our API has a schema suitable to address the common data from the AEC industry. It's composed of the 5 constructs described below:
+Our API has a schema suitable to address the common data from the AEC industry. It contains the 5 constructs described below:
 
 - **ElementGroup**: A ElementGroup is a part of an AEC project that contains elements. Note that “Model” or “Design” is sometimes used interchangeably with “ElementGroup”.
 - **Elements**: An Element is a building block of elementGroup data. It represents an individual piece of an elementGroup such as a wall, window, or door without enforcing a rigid definition. The absence of a rigid definition allows the Element to be flexible to adapt to the different requirements of an elementGroup, now and in the future. The data contained in an Element gives it context by using Classification, Property, and Property Definition.
