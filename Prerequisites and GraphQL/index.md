@@ -10,7 +10,7 @@ permalink: /prerequisites/home/
 
 Before jumping into action, you need to fulfill a few (but essential) prerequisites to follow along with this tutorial. **The steps need to be fulfilled in sequence for you to be able to follow this tutorial (only move to the next step after completing the previous one)**:
 
-1. Firstly, you will need an ACC account from the **AMER or EMEA region**. The AEC Data Model API works based on Revit 2024+ designs hosted on ACC hubs in the **AMER and EMEA regions** , so it is **required**. Although the scope of this tutorial is just reading data, we recommend that you create a separate project for testing the AEC Data Model API. If you don't have access to an **AMER or EMEA ACC hub**, you can find options for getting a test account on [this blog](https://fieldofviewblog.wordpress.com/2017/08/31/bim-360-acc-account-for-development/).
+1. Firstly, you will need an ACC account from the **AMER, EMEA or AUS region**. The AEC Data Model API works based on Revit 2024+ designs hosted on ACC hubs in the **AMER and EMEA regions** , so it is **required**. Although the scope of this tutorial is just reading data, we recommend that you create a separate project for testing the AEC Data Model API. If you don't have access to an **AMER or EMEA ACC hub**, you can find options for getting a test account on [this blog](https://fieldofviewblog.wordpress.com/2017/08/31/bim-360-acc-account-for-development/).
 
 **Make sure you now have access to an ACC hub in the AMER or EMEA region and only then proceed to the next prerequisite.**
 
@@ -18,7 +18,7 @@ Before jumping into action, you need to fulfill a few (but essential) prerequisi
 
    ![translation diagram](../../assets/images/translationdiagram.png)
 
-3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b). You just need to download the .zip file, unzip it, and then upload the Revit files to your account. If your account is active, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareGroupId=1b10a513-3ba9-4296-9c53-a0d33c7c3f3b), and upload them to a known project in your ACC hub** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
+3. With the first two steps covered, it's time to make our design data ready to use with the AEC Data Model API. For our tutorial, we prepared a subset of files that you can download [here](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=6869336b-760f-4047-8b51-b2676b0159e0). You just need to download the .zip file, unzip it, and then upload the Revit files to your account. If your account is active, please go ahead, **[download the files](https://acc.autodesk.com/docs/share/projects/ddcecd34-68b7-41af-ad65-2ce571186c6c/files?shareId=6869336b-760f-4047-8b51-b2676b0159e0), and upload them to a known project in your ACC hub** as soon as possible. After that, you can move to our last prerequisite (we're almost done ;)).
 
 4. You'll also need to [provision access in your ACC hub](https://tutorials.autodesk.io/?check_logged_in=1#provision-access-in-other-products) to the client id `HKVjhUXySDGLGJimolxAgDdpoCuZLlql`. This is the client id of the APS app used by the [explorer](https://aecdatamodel-explorer.autodesk.io/) that we'll be using in this tutorial.
 
@@ -94,7 +94,7 @@ And the response for this query will look like this
 ```
 
 Note that in this case we specified that we wanted to obtain the ElementGroup with id `YWVjZH5...EpfSHZ3` from version `1`.
-From this elementgroup, we specified the element with `External Id` equal to `41434aa5-...-0018527b`, and from this element, we retrieved the property with a name equal to `length` including its **value**, **name**, and **unit**.
+From this ElementGroup, we specified the Element with `External Id` equal to `41434aa5-...-0018527b`, and from this Element, we retrieved the property with a name equal to `length` including its **value**, **name**, and **unit**.
 
 With REST API we would need additional requests, and wouldn't be possible to specify with this precision the data in the response.
 
@@ -107,11 +107,11 @@ To summarize, with GraphQL we have the benefits below:
 
 Before moving to the next step, let's run our very first query.
 
-For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, log in, and run the query from the very first panel (GetHubs), just like in the image below:
+For that, you just need to go to the explorer app at `https://aecdatamodel-explorer.autodesk.io/`, sign in, and run the query from the very first panel (GetHubs), just like in the image below:
 
 ![First Query](../../assets/images/firstquery.gif)
 
-> For queries against data hosted in ACC hubs from regions other than the US, such as EMEA, you need to add the appropriate region header. If you don’t specify a value in the header for other regions, the US region will be used as it is the default. For more information about how to specify the custom header value, refer to the GraphQL Endpoint topic.
+> For queries against data hosted in ACC hubs from regions other than the US, such as EMEA or AUS, you need to add the appropriate region header. If you don’t specify a value in the header for other regions, the US region will be used as it is the default. For more information about how to specify the custom header value, refer to the GraphQL Endpoint topic.
 
 ![region header](../../assets/images/region_header.png)
 

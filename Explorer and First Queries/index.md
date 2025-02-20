@@ -86,7 +86,7 @@ As described in our documentation ([refer here](https://aps.autodesk.com/en/docs
 
 We'll address pagination in details in the step 4 ;)
 
-Now make sure you can see the hub you used to join the AEC Data Model beta listed in the response and move to the next query.
+Now make sure you can see the hub you activated the AEC Data Model listed in the response and move to the next query.
 
 This tutorial will move to the next steps using the hub named `AEC DM Developer Advocacy Support`.
 In the next query, you'll need to use your hub id as input.
@@ -105,7 +105,7 @@ Now you'll need to find the project that hosts your Revit 2024+ designs for this
 
 This tutorial uses the project `AEC DM Bootcamp Project`, which is already visible on the first page of the response.
 
-In case your hub has many projects, the one you need to use might be missing from the first page (or even hard to find).
+In case your hub has many projects, the one you need to use might be missing from the first page.
 
 There's a way to filter the response.
 
@@ -146,10 +146,10 @@ We are not going to use the alternative representation for the projects in this 
 Usually inside a project, we have a complete structure of folders separating files according to project phase, disciplines, teams, etc...
 You might be used to traverse this folder structure to reach your items level, but that isn't necessary when we use AEC Data Model API.
 
-There are queries that list elementgroups from a project and even from a hub.
+There are queries that list ElementGroups from a project and even from a hub.
 Obviously, by limiting the container the response is more precise, avoiding the need to go through multiple pages or filtering.
 
-In this step we'll focus on listing all the elementGroups available in one specific project, using the desired project id.
+In this step we'll focus on listing all the ElementGroups available in one specific project, using the desired project id.
 For that, we just need to copy the project id from the previous step response, move to the `GetElementGroupsByProject` pane, and paste the project id into the `GetElementGroupsByProject` variables. Just like in the gif below:
 
 ![GET ElementGroups](../../assets/images/getdesigns.gif)
@@ -164,7 +164,7 @@ If you notice the response for one specific elementgroup, you'll see that it con
 
 Before moving to the next query, we need to load the `Snowdon Towers Sample Facades` in Explorer's Viewer.
 
-This is quite simple to achieve ;), you just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeIdentifiers) in the second input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
+This is quite simple to achieve ;). You just need to copy and paste the version id (available in the field `fileVersionUrn` inside the alternativeIdentifiers) in the input from the page's header and flick the switch to turn on the Viewer. Just like in the gif below:
 
 ![Load Viewer](../../assets/images/loadviewer.gif)
 
