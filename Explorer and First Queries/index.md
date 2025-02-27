@@ -315,17 +315,19 @@ The AEC Data Model API has two limits in place:
 - An application request will have a default rate limit of 6000 points per minute. To request a higher rate limit, please contact support.
 - An individual request has a limit of 1000 points per query. Any queries exceeding this limit will be rejected.
 
-## How does the point cost work?
+## How does the point value work?
 
-- Generally, the point cost represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
-- Every requested field in the query (including nested fields) has a point cost associated with it based on its type.
+- Generally, the point value represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
+- Every requested field in the query (including nested fields) has a point value associated with it based on its type.
 - Typically:
-  - If it's an object (so, possibly a data fetch), the cost is 1 + cost of nested fields
-  - If it's a page of results (so, possibly a data fetch), the cost is 1 + cost of nested fields of each result
-  - If it's a scalar or an enum, there is no cost (as these are most likely retrieved from "parent" data fetches)
-  - But there are exceptions. Selected fields may have their cost value customized.
-  - Currently, the point cost is calculated statically (by analyzing the GraphQL query). For paginated results, we assume the page to be of maximum possible length.
-  - In future, the point cost may be calculated dynamically (by analyzing the GraphQL response). For paginated results, we will know the exact size of the page.
+  - If it's an object (so, possibly a data fetch), the value is 1 + value of nested fields
+  - If it's a page of results (so, possibly a data fetch), the value is 1 + value of nested fields of each result
+  - If it's a scalar or an enum, there is no value (as these are most likely retrieved from "parent" data fetches)
+  - But there are exceptions. Selected fields may have their value value customized.
+  - Currently, the point value is calculated statically (by analyzing the GraphQL query). For paginated results, we assume the page to be of maximum possible length.
+  - In future, the point value may be calculated dynamically (by analyzing the GraphQL response). For paginated results, we will know the exact size of the page.
+
+**point value has been also added to data.extensions field of the response**
 
 Now we can move to the next step. In the next section we'll understand how the connection between the AEC Data Model API resnponse and the Viewer works and explore more complex queries.
 
