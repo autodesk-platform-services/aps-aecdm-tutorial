@@ -29,12 +29,7 @@ concurrency:
 jobs:
   # Build job
   build:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ ubuntu-20.04, ubuntu-22.04, ubuntu-24.04, ubuntu-22.04-arm, ubuntu-24.04-arm, macos-13, macos-14 ]
-        ruby: [truffleruby-23.0.0,truffleruby-23.1.2, truffleruby+graalvm-23.0.0,truffleruby-23.1.2]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v4
