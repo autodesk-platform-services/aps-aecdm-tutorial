@@ -156,7 +156,7 @@ We can point to the next page by simply adding the cursor in our query, like the
 
 ```js
 query GetDuctsFromElementGroup($elementGroupId: ID!, $elementsFilter: String!) {
-  elements(
+  elementsByElementGroup(
     elementGroupId: $elementGroupId
     filter: {query: $elementsFilter}
     pagination: {limit: 100, cursor:"YOUR CURSOR GOES HERE!"}

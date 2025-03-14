@@ -188,7 +188,7 @@ Retrieves only elements from the **Walls** category.
 
 By default, the **elementsByElementGroup** query is limited to listing only the first 50 elements, so it doesn't list all the walls from our design.
 
-> _Refer to the table below (also available in the docs_
+> _Refer to the table below (also available in the docs)_
 
 | Used by query | Description                                                                                                                                   | Default limit | Maximum limit |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------- | ------------- |
@@ -262,7 +262,7 @@ query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
 }
 ```
 
-Ande the Variables just like the one below:
+And the Variables just like the one below:
 
 ```js
 {
@@ -315,19 +315,29 @@ The AEC Data Model API has two limits in place:
 - An application request will have a default rate limit of 6000 points per minute. To request a higher rate limit, please contact support.
 - An individual request has a limit of 1000 points per query. Any queries exceeding this limit will be rejected.
 
-## How does the point value work?
+## About Point Value
+> Generally, the point value represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
 
-- Generally, the point value represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
-- Every requested field in the query (including nested fields) has a point value associated with it based on its type.
-- Typically:
-  - If it's an object (so, possibly a data fetch), the value is 1 + value of nested fields
-  - If it's a page of results (so, possibly a data fetch), the value is 1 + value of nested fields of each result
-  - If it's a scalar or an enum, there is no value (as these are most likely retrieved from "parent" data fetches)
-  - But there are exceptions. Selected fields may have their value value customized.
-  - Currently, the point value is calculated statically (by analyzing the GraphQL query). For paginated results, we assume the page to be of maximum possible length.
-  - In future, the point value may be calculated dynamically (by analyzing the GraphQL response). For paginated results, we will know the exact size of the page.
 
-**point value has been also added to data.extensions field of the response**
+> Query Point Value has been added to `data.extensions` field of the response and is generally available to all users. This information is included in the response to all valid queries.
+
+```js
+{
+  {
+      "data": {
+          ...
+      },
+      "extensions": {
+          "pointValue": {
+              "requestedQueryPointValue": 16
+          }
+      }
+  }
+}
+```
+
+If you are interested in how Point Value of a query is calculated, please refer [How to calculate the point value of a query](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/ratelimit/#how-to-calculate-the-point-value-of-a-query).
+
 
 Now we can move to the next step. In the next section we'll understand how the connection between the AEC Data Model API resnponse and the Viewer works and explore more complex queries.
 
