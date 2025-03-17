@@ -304,8 +304,9 @@ query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {
 
 And with that, we covered the first queries with the AEC Data Model API.
 
-Before moving to the last section, there's another topic worth addressing: Rate Limits.
+Before moving to the last section, there's another topic worth addressing: Rate Limits and Point Value.
 
+## Rate Limit
 As described in our docs ([refer here](https://aps.autodesk.com/en/docs/aecdatamodel/v1/developers_guide/ratelimit/)):
 
 > In order to maintain stability and ensure accessibility of our API to all users, we’ve implemented certain protection measures on incoming requests to our GraphQL API via Rate Limits.
@@ -315,11 +316,11 @@ The AEC Data Model API has two limits in place:
 - An application request will have a default rate limit of 6000 points per minute. To request a higher rate limit, please contact support.
 - An individual request has a limit of 1000 points per query. Any queries exceeding this limit will be rejected.
 
-## About Point Value
-> Generally, the point value represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
+## Point Value
+- The point value represents the number of "data fetches" (REST calls, SQL queries, etc.) that will be executed in order to resolve the complete GraphQL query.
 
 
-> Query Point Value has been added to `data.extensions` field of the response and is generally available to all users. This information is included in the response to all valid queries.
+- Query Point Value has been added to `data.extensions` field of the response and is generally available to all users. This information is included in the response to all valid queries.
 
 ```js
 {
