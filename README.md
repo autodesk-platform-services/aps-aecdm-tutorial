@@ -8,4 +8,4 @@ This tutorial leverages mostly the [Explorer's](https://aecdatamodel-explorer.au
 
 You can check the tutorial at [https://autodesk-platform-services.github.io/aps-aecdm-tutorial/](https://autodesk-platform-services.github.io/aps-aecdm-tutorial/)
 
-Give it a try and let us know your opinion ;
+Give it a try and let us know your opinion :)
